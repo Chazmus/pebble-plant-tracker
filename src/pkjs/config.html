@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Tracker Settings</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-color: #10b981;
+      --accent-hover: #059669;
+      --danger-color: #ef4444;
+      --danger-hover: #dc2626;
+      --focus-ring: 0 0 0 3px rgba(16, 185, 129, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+
+    p.subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    }
+
+    .plant-item {
+      position: relative;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: slideIn 0.3s ease-out;
+      transition: all 0.2s ease;
+    }
+
+    .plant-item:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .plant-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .plant-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .btn-delete {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-delete:hover {
+      color: var(--danger-color);
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+    }
+
+    input[type="text"],
+    input[type="date"] {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="date"]:focus {
+      border-color: var(--accent-color);
+      box-shadow: var(--focus-ring);
+    }
+
+    .btn {
+      width: 100%;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      margin-bottom: 8px;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .plant-history {
+      font-size: 12px;
+      color: var(--text-secondary);
+      background: rgba(15, 23, 42, 0.3);
+      padding: 10px;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent-color);
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 32px 16px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .empty-icon {
+      font-size: 32px;
+      color: var(--accent-color);
+      opacity: 0.6;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    /* Icon styles */
+    .icon {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Plant Tracker</h1>
+      <p class="subtitle">Configure your plants for your watch</p>
+    </header>
+
+    <div class="card">
+      <div id="plant-list">
+        <!-- Plants will be dynamically rendered here -->
+      </div>
+
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon">🌱</div>
+        <p>No plants configured. Add your first plant below!</p>
+      </div>
+
+      <div class="actions">
+        <button id="btn-add" class="btn btn-secondary">
+          <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Add Plant
+        </button>
+        <button id="btn-save" class="btn btn-primary">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          Save to Watch
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let plants = [];
+
+    // SVG icons
+    const trashIcon = `<svg class="icon" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>`;
+
+    // Helper: Get URL Query Params
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Helper: Parse Date to YYYY-MM-DD for input
+    function formatDateForInput(date) {
+      if (!date) return '';
+      const d = new Date(date);
+      let month = '' + (d.getMonth() + 1);
+      let day = '' + d.getDate();
+      const year = d.getFullYear();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+      return [year, month, day].join('-');
+    }
+
+    // Load initial settings
+    function loadSettings() {
+      // Try to parse from URL query param (config passed from PebbleKit JS)
+      const dataParam = getQueryParam('plants');
+      if (dataParam) {
+        try {
+          plants = JSON.parse(decodeURIComponent(dataParam));
+        } catch (e) {
+          console.error("Failed to parse plants from URL", e);
+        }
+      }
+
+      // If nothing in URL, check localStorage (as fallback)
+      if (!plants || plants.length === 0) {
+        try {
+          const stored = localStorage.getItem('plant_tracker_settings');
+          if (stored) {
+            plants = JSON.parse(stored);
+          }
+        } catch (e) {
+          console.warn("localStorage is not accessible in this context", e);
+        }
+      }
+
+      // Ensure every plant has some structure
+      plants = plants || [];
+      
+      // Render
+      renderPlants();
+    }
+
+    function renderPlants() {
+      const listEl = document.getElementById('plant-list');
+      const emptyEl = document.getElementById('empty-state');
+      
+      listEl.innerHTML = '';
+      
+      if (plants.length === 0) {
+        emptyEl.style.display = 'flex';
+      } else {
+        emptyEl.style.display = 'none';
+        
+        plants.forEach((plant, index) => {
+          const itemEl = document.createElement('div');
+          itemEl.className = 'plant-item';
+          itemEl.dataset.index = index;
+
+          const plantedVal = formatDateForInput(plant.plantedAt);
+          
+          // History/status display
+          let historyHtml = '';
+          if (plant.lastWatered || plant.lastFertilized) {
+            historyHtml = `<div class="plant-history">`;
+            if (plant.lastWatered) {
+              const waterDate = new Date(plant.lastWatered).toLocaleString();
+              historyHtml += `<div class="history-item"><span>Last Watered:</span> <span>${waterDate}</span></div>`;
+            }
+            if (plant.lastFertilized) {
+              const fertDate = new Date(plant.lastFertilized).toLocaleString();
+              const fertAmt = plant.lastFertilizedAmount || 0;
+              historyHtml += `<div class="history-item"><span>Last Fertilized:</span> <span>${fertDate} (${fertAmt} ml/L)</span></div>`;
+            }
+            historyHtml += `</div>`;
+          }
+
+          itemEl.innerHTML = `
+            <div class="plant-header">
+              <span class="plant-title">Plant #${index + 1}</span>
+              <button class="btn-delete" onclick="deletePlant(${index})" type="button" title="Delete plant">
+                ${trashIcon}
+              </button>
+            </div>
+            <div class="input-group">
+              <label for="name-${index}">Plant Name</label>
+              <input type="text" id="name-${index}" value="${escapeHtml(plant.name || '')}" placeholder="e.g. Fiddle Leaf Fig" oninput="updatePlantName(${index}, this.value)" required>
+            </div>
+            <div class="input-group">
+              <label for="planted-${index}">Planted Date</label>
+              <input type="date" id="planted-${index}" value="${plantedVal}" oninput="updatePlantDate(${index}, this.value)" required>
+            </div>
+            ${historyHtml}
+          `;
+          listEl.appendChild(itemEl);
+        });
+      }
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // State Operations
+    function addPlant() {
+      plants.push({
+        id: 'p_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
+        name: '',
+        plantedAt: new Date().toISOString().split('T')[0],
+        lastWatered: null,
+        lastFertilized: null,
+        lastFertilizedAmount: 0
+      });
+      renderPlants();
+      // Focus on the newly added plant input
+      const lastIdx = plants.length - 1;
+      setTimeout(() => {
+        const input = document.getElementById(`name-${lastIdx}`);
+        if (input) input.focus();
+      }, 50);
+    }
+
+    function deletePlant(index) {
+      plants.splice(index, 1);
+      renderPlants();
+    }
+
+    function updatePlantName(index, val) {
+      if (plants[index]) {
+        plants[index].name = val;
+      }
+    }
+
+    function updatePlantDate(index, val) {
+      if (plants[index]) {
+        // Convert to ISO or keep date string
+        plants[index].plantedAt = val;
+      }
+    }
+
+    // Save and Return
+    function saveSettings() {
+      // Validate
+      for (let i = 0; i < plants.length; i++) {
+        if (!plants[i].name.trim()) {
+          alert(`Please enter a name for Plant #${i + 1}`);
+          const input = document.getElementById(`name-${i}`);
+          if (input) input.focus();
+          return;
+        }
+        if (!plants[i].plantedAt) {
+          alert(`Please select a planted date for Plant #${i + 1}`);
+          const input = document.getElementById(`planted-${i}`);
+          if (input) input.focus();
+          return;
+        }
+      }
+
+      // Save to localStorage (wrapped in try-catch to prevent DOMExceptions in data: URI WebViews)
+      try {
+        localStorage.setItem('plant_tracker_settings', JSON.stringify(plants));
+      } catch (e) {
+        console.warn("localStorage write not allowed in this context", e);
+      }
+
+      // Construct return url using return_to parameter if available
+      let returnTo = getQueryParam('return_to') || 'pebblejs://close#';
+      if (returnTo.indexOf('#') === -1) {
+        returnTo += '#';
+      }
+      const returnUrl = returnTo + encodeURIComponent(JSON.stringify(plants));
+      console.log("Redirecting to: ", returnUrl);
+      document.location.href = returnUrl;
+    }
+
+    // Event Listeners
+    document.getElementById('btn-add').addEventListener('click', addPlant);
+    document.getElementById('btn-save').addEventListener('click', saveSettings);
+
+    // Init
+    window.addEventListener('DOMContentLoaded', loadSettings);
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "name": "pebble-app",
+  "author": "MakeAwesomeHappen",
+  "version": "1.2.0",
+  "keywords": ["pebble-app"],
+  "private": true,
+  "scripts": {
+    "build-config": "node build_config.js",
+    "build": "pebble build",
+    "deploy": "./deploy.sh"
+  },
+  "dependencies": {},
+  "pebble": {
+    "displayName": "pebble-app",
+    "uuid": "38b74051-5193-4ca5-b1c0-e70fd94043b9",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk",
+      "diorite",
+      "emery",
+      "flint",
+      "gabbro"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "capabilities": [
+      "configurable"
+    ],
+    "messageKeys": [
+      "AppKeySync",
+      "AppKeyPlantCount",
+      "AppKeyPlantIndex",
+      "AppKeyPlantId",
+      "AppKeyPlantName",
+      "AppKeyPlantDate",
+      "AppKeyLogType",
+      "AppKeyLogAmount",
+      "AppKeyLogTime"
+    ],
+    "resources": {
+      "media": []
+    }
+  }
+}
