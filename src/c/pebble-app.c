@@ -4,6 +4,13 @@
 #define MAX_PLANTS 30
 #define PERSIST_KEY_PLANT_COUNT 99
 #define PERSIST_KEY_PLANT_BASE 100
+#define MAX_HISTORY 5
+
+typedef struct {
+  time_t time;
+  uint8_t type; // 0 = water, 1 = fertilize
+  uint8_t amount; // amount in ml/L
+} LogEvent;
 
 typedef struct {
   char id[32];
@@ -12,6 +19,8 @@ typedef struct {
   time_t last_watered;
   time_t last_fertilized;
   int last_fertilized_amount;
+  LogEvent history[MAX_HISTORY];
+  uint8_t history_count;
 } Plant;
 
 static Plant s_plants[MAX_PLANTS];
@@ -26,6 +35,9 @@ static MenuLayer *s_menu_layer;
 
 static Window *s_action_window;
 static MenuLayer *s_action_menu_layer;
+
+static Window *s_history_window;
+static MenuLayer *s_history_menu_layer;
 
 static NumberWindow *s_number_window;
 static int s_selected_plant_index = -1;
@@ -77,6 +89,26 @@ static void request_sync(void) {
   APP_LOG(APP_LOG_LEVEL_INFO, "Requested sync from phone");
 }
 
+// Helper: Add logging event to plant history
+static void add_plant_history_event(Plant *p, uint8_t type, uint8_t amount) {
+  // If the history is full, shift everything left (discard oldest)
+  if (p->history_count >= MAX_HISTORY) {
+    for (int i = 1; i < MAX_HISTORY; i++) {
+      p->history[i - 1] = p->history[i];
+    }
+    p->history_count = MAX_HISTORY - 1;
+  }
+  
+  // Add new event at the end
+  LogEvent ev;
+  ev.time = time(NULL);
+  ev.type = type;
+  ev.amount = amount;
+  
+  p->history[p->history_count] = ev;
+  p->history_count++;
+}
+
 // --- NumberWindow Callback ---
 static void number_selected_callback(struct NumberWindow *number_window, void *context) {
   int amount = number_window_get_value(number_window);
@@ -86,6 +118,9 @@ static void number_selected_callback(struct NumberWindow *number_window, void *c
     // Update state
     s_plants[index].last_fertilized = time(NULL);
     s_plants[index].last_fertilized_amount = amount;
+    
+    // Add to local history log
+    add_plant_history_event(&s_plants[index], 1, amount);
     
     // Persist
     persist_write_data(PERSIST_KEY_PLANT_BASE + index, &s_plants[index], sizeof(Plant));
@@ -116,6 +151,9 @@ static void log_water_success(int index) {
     // Update state
     s_plants[index].last_watered = time(NULL);
     
+    // Add to local history log
+    add_plant_history_event(&s_plants[index], 0, 0);
+    
     // Persist
     persist_write_data(PERSIST_KEY_PLANT_BASE + index, &s_plants[index], sizeof(Plant));
     
@@ -138,7 +176,7 @@ static void log_water_success(int index) {
 }
 
 static uint16_t action_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_index, void *context) {
-  return 2;
+  return 3;
 }
 
 static int16_t action_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *context) {
@@ -162,6 +200,8 @@ static void action_draw_row_callback(GContext *ctx, const Layer *cell_layer, Men
     menu_cell_basic_draw(ctx, cell_layer, "Log Water", "Record watering event", NULL);
   } else if (cell_index->row == 1) {
     menu_cell_basic_draw(ctx, cell_layer, "Log Fertiliser", "Record fertilizer event", NULL);
+  } else if (cell_index->row == 2) {
+    menu_cell_basic_draw(ctx, cell_layer, "View History", "Show previous logs", NULL);
   }
 }
 
@@ -175,6 +215,9 @@ static void action_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index,
     int last_amt = s_plants[s_selected_plant_index].last_fertilized_amount;
     number_window_set_value(s_number_window, last_amt > 0 ? last_amt : 5);
     window_stack_push((Window *)s_number_window, true);
+  } else if (cell_index->row == 2) {
+    // Open history logs window
+    window_stack_push(s_history_window, true);
   }
 }
 
@@ -197,6 +240,80 @@ static void action_window_load(Window *window) {
 
 static void action_window_unload(Window *window) {
   menu_layer_destroy(s_action_menu_layer);
+}
+
+// --- History Window Callbacks ---
+static uint16_t history_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_index, void *context) {
+  if (s_selected_plant_index < 0 || s_selected_plant_index >= s_plant_count) return 0;
+  int count = s_plants[s_selected_plant_index].history_count;
+  if (count == 0) {
+    return 1; // "No history" row
+  }
+  return count;
+}
+
+static int16_t history_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *context) {
+  return 28;
+}
+
+static void history_draw_header_callback(GContext *ctx, const Layer *cell_layer, uint16_t section_index, void *context) {
+  if (s_selected_plant_index < 0 || s_selected_plant_index >= s_plant_count) return;
+  Plant p = s_plants[s_selected_plant_index];
+  
+  char header_buf[64];
+  snprintf(header_buf, sizeof(header_buf), "History: %s", p.name);
+  
+  menu_cell_basic_header_draw(ctx, cell_layer, header_buf);
+}
+
+static void history_draw_row_callback(GContext *ctx, const Layer *cell_layer, MenuIndex *cell_index, void *context) {
+  if (s_selected_plant_index < 0 || s_selected_plant_index >= s_plant_count) return;
+  Plant p = s_plants[s_selected_plant_index];
+  
+  if (p.history_count == 0) {
+    menu_cell_basic_draw(ctx, cell_layer, "No History Logs", "Water/fertilize to log", NULL);
+    return;
+  }
+  
+  int row = cell_index->row;
+  // Reverse chronological order: newest log at the top of the menu
+  int event_idx = p.history_count - 1 - row;
+  if (event_idx >= 0 && event_idx < p.history_count) {
+    LogEvent ev = p.history[event_idx];
+    
+    char title_buf[32];
+    char time_buf[24];
+    
+    get_relative_time_string(time_buf, sizeof(time_buf), ev.time);
+    
+    if (ev.type == 0) {
+      snprintf(title_buf, sizeof(title_buf), "Watered");
+    } else {
+      snprintf(title_buf, sizeof(title_buf), "Fertilized (%dml/L)", ev.amount);
+    }
+    
+    menu_cell_basic_draw(ctx, cell_layer, title_buf, time_buf, NULL);
+  }
+}
+
+static void history_window_load(Window *window) {
+  Layer *window_layer = window_get_root_layer(window);
+  GRect bounds = layer_get_bounds(window_layer);
+  
+  s_history_menu_layer = menu_layer_create(bounds);
+  menu_layer_set_callbacks(s_history_menu_layer, NULL, (MenuLayerCallbacks) {
+    .get_num_rows = history_get_num_rows_callback,
+    .get_header_height = history_get_header_height_callback,
+    .draw_header = history_draw_header_callback,
+    .draw_row = history_draw_row_callback,
+  });
+  
+  menu_layer_set_click_config_onto_window(s_history_menu_layer, window);
+  layer_add_child(window_layer, menu_layer_get_layer(s_history_menu_layer));
+}
+
+static void history_window_unload(Window *window) {
+  menu_layer_destroy(s_history_menu_layer);
 }
 
 // --- Main Window Callbacks ---
@@ -281,7 +398,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
     int new_count = count_tuple->value->int32;
     APP_LOG(APP_LOG_LEVEL_INFO, "Sync started: plant count = %d", new_count);
     
-    // Copy current plants to temp buffer to preserve local logs during updates
+    // Copy current plants to temp buffer to preserve local logs/history during updates
     s_temp_plant_count = s_plant_count;
     for (int i = 0; i < s_plant_count; i++) {
       s_temp_plants[i] = s_plants[i];
@@ -319,13 +436,15 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
       snprintf(p.name, sizeof(p.name), "%s", name_tuple->value->cstring);
       p.planted_at = (time_t)date_tuple->value->uint32;
       
-      // Preserve history if we had this plant ID locally
+      // Preserve history logs if we had this plant ID locally
       bool found = false;
       for (int i = 0; i < s_temp_plant_count; i++) {
         if (strcmp(s_temp_plants[i].id, p.id) == 0) {
           p.last_watered = s_temp_plants[i].last_watered;
           p.last_fertilized = s_temp_plants[i].last_fertilized;
           p.last_fertilized_amount = s_temp_plants[i].last_fertilized_amount;
+          p.history_count = s_temp_plants[i].history_count;
+          memcpy(p.history, s_temp_plants[i].history, sizeof(p.history));
           found = true;
           break;
         }
@@ -335,6 +454,8 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
         p.last_watered = 0;
         p.last_fertilized = 0;
         p.last_fertilized_amount = 0;
+        p.history_count = 0;
+        memset(p.history, 0, sizeof(p.history));
       }
       
       s_plants[index] = p;
@@ -377,6 +498,7 @@ static void load_plants_from_storage(void) {
   APP_LOG(APP_LOG_LEVEL_INFO, "Loading %d plants from persistent storage", s_plant_count);
   for (int i = 0; i < s_plant_count; i++) {
     if (persist_exists(PERSIST_KEY_PLANT_BASE + i)) {
+      memset(&s_plants[i], 0, sizeof(Plant));
       persist_read_data(PERSIST_KEY_PLANT_BASE + i, &s_plants[i], sizeof(Plant));
     }
   }
@@ -399,6 +521,12 @@ static void prv_init(void) {
     .unload = action_window_unload,
   });
   
+  s_history_window = window_create();
+  window_set_window_handlers(s_history_window, (WindowHandlers) {
+    .load = history_window_load,
+    .unload = history_window_unload,
+  });
+  
   s_number_window = number_window_create("Fertilizer ml/L", (NumberWindowCallbacks) {
     .selected = number_selected_callback
   }, NULL);
@@ -418,6 +546,7 @@ static void prv_init(void) {
 static void prv_deinit(void) {
   window_destroy(s_main_window);
   window_destroy(s_action_window);
+  window_destroy(s_history_window);
   number_window_destroy(s_number_window);
 }
 
