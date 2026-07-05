@@ -150,8 +150,9 @@ static void action_draw_header_callback(GContext *ctx, const Layer *cell_layer, 
   Plant p = s_plants[s_selected_plant_index];
   
   char header_buf[64];
-  int age = get_plant_age_days(p.planted_at);
-  snprintf(header_buf, sizeof(header_buf), "%s (Age: %dd)", p.name, age);
+  int age_days = get_plant_age_days(p.planted_at);
+  int age_weeks = age_days / 7;
+  snprintf(header_buf, sizeof(header_buf), "%s (Age: %dd / %dw)", p.name, age_days, age_weeks);
   
   menu_cell_basic_header_draw(ctx, cell_layer, header_buf);
 }
