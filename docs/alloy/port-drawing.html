@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<!--
+ Copyright 2025 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Port (Custom Drawing) // Pebble Developers</title>
+  <meta property="og:site_name" content="Pebble Developers" />
+  <meta property="og:title" content="Port (Custom Drawing)" />
+  <meta property="og:url" content="https://developer.repebble.com/guides/alloy/port-drawing/" />
+  
+  <meta property="og:description" content="Combine Piu's declarative UI with custom drawing using Port.
+" />
+  <meta name="description" content="Combine Piu's declarative UI with custom drawing using Port.
+">
+  
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:image" content="https://developer.repebble.com/assets/images/menu/guides.png" />
+  
+  
+  <meta name="theme-color" content="#e5e327">
+  <link rel="canonical" href="https://developer.repebble.com/guides/alloy/port-drawing/">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+  <link href="https://developer.repebble.com/assets/favicon.png" rel="shortcut icon" type="image/vnd.microsoft.icon" id="favicon">
+  <link rel="stylesheet" type="text/css" href="https://developer.repebble.com/assets/css/main.css">
+  
+  <noscript>
+  <link rel="stylesheet" type="text/css" href="https://developer.repebble.com/assets/css/noscript.css">
+  </noscript>
+  
+  <script type="text/javascript" >
+    var _rollbarConfig = {
+      accessToken: '',
+      captureUncaught: true,
+      payload: {
+        environment: 'production'
+      }
+    };
+    !function(a,b){function c(b){this.shimId=++h,this.notifier=null,this.parentShim=b,this.logger=function(){},a.console&&void 0===a.console.shimId&&(this.logger=a.console.log)}function d(b,c,d){a._rollbarWrappedError&&(d[4]||(d[4]=a._rollbarWrappedError),d[5]||(d[5]=a._rollbarWrappedError._rollbarContext),a._rollbarWrappedError=null),b.uncaughtError.apply(b,d),c&&c.apply(a,d)}function e(b){var d=c;return g(function(){if(this.notifier)return this.notifier[b].apply(this.notifier,arguments);var c=this,e="scope"===b;e&&(c=new d(this));var f=Array.prototype.slice.call(arguments,0),g={shim:c,method:b,args:f,ts:new Date};return a._rollbarShimQueue.push(g),e?c:void 0})}function f(a,b){if(b.hasOwnProperty&&b.hasOwnProperty("addEventListener")){var c=b.addEventListener;b.addEventListener=function(b,d,e){c.call(this,b,a.wrap(d),e)};var d=b.removeEventListener;b.removeEventListener=function(a,b,c){d.call(this,a,b&&b._wrapped?b._wrapped:b,c)}}}function g(a,b){return b=b||this.logger,function(){try{return a.apply(this,arguments)}catch(c){b("Rollbar internal error:",c)}}}var h=0;c.init=function(a,b){var e=b.globalAlias||"Rollbar";if("object"==typeof a[e])return a[e];a._rollbarShimQueue=[],a._rollbarWrappedError=null,b=b||{};var h=new c;return g(function(){if(h.configure(b),b.captureUncaught){var c=a.onerror;a.onerror=function(){var a=Array.prototype.slice.call(arguments,0);d(h,c,a)};var g,i,j="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(g=0;g<j.length;++g)i=j[g],a[i]&&a[i].prototype&&f(h,a[i].prototype)}return a[e]=h,h},h.logger)()},c.prototype.loadFull=function(a,b,c,d,e){var f=g(function(){var a=b.createElement("script"),e=b.getElementsByTagName("script")[0];a.src=d.rollbarJsUrl,a.async=!c,a.onload=h,e.parentNode.insertBefore(a,e)},this.logger),h=g(function(){var b;if(void 0===a._rollbarPayloadQueue){var c,d,f,g;for(b=new Error("rollbar.js did not load");c=a._rollbarShimQueue.shift();)for(f=c.args,g=0;g<f.length;++g)if(d=f[g],"function"==typeof d){d(b);break}}"function"==typeof e&&e(b)},this.logger);g(function(){c?f():a.addEventListener?a.addEventListener("load",f,!1):a.attachEvent("onload",f)},this.logger)()},c.prototype.wrap=function(b,c){try{var d;if(d="function"==typeof c?c:function(){return c||{}},"function"!=typeof b)return b;if(b._isWrap)return b;if(!b._wrapped){b._wrapped=function(){try{return b.apply(this,arguments)}catch(c){throw c._rollbarContext=d(),c._rollbarContext._wrappedSource=b.toString(),a._rollbarWrappedError=c,c}},b._wrapped._isWrap=!0;for(var e in b)b.hasOwnProperty(e)&&(b._wrapped[e]=b[e])}return b._wrapped}catch(f){return b}};for(var i="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError".split(","),j=0;j<i.length;++j)c.prototype[i[j]]=e(i[j]);var k="//d37gvrvc0wt4s1.cloudfront.net/js/v1.1/rollbar.min.js";_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||k;var l=c.init(a,_rollbarConfig);l.loadFull(a,b,!1,_rollbarConfig)}(window,document);
+  </script>
+  <script type="text/javascript" async>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+</head>
+<body class="">
+  <div class="mmenu__wrapper">
+    <div class="sidebar__wrapper sidebar__wrapper--sectionmenu">
+  <div class="sidebar sidebar--narrow">
+    <a href="/" class="sidebar__header">
+      <span>pebble</span>
+    </a>
+    <ul class="mainmenu">
+      
+
+<li class="mainmenu__item mainmenu__item--getting-started"><a href="/tutorials/"><span>Tutorials</span></a></li>
+<li class="mainmenu__item mainmenu__item--sdk"><a href="/sdk/"><span>Get the SDK</span></a></li>
+<li class="mainmenu__item mainmenu__item--guides active"><a href="/guides/"><span>Guides</span></a></li>
+<li class="mainmenu__item mainmenu__item--docs"><a href="/docs/"><span>Documentation</span></a></li>
+<li class="mainmenu__item mainmenu__item--examples"><a href="/examples/"><span>Examples</span></a></li>
+<li class="mainmenu__item mainmenu__item--community"><a href="/community/"><span>Community</span></a></li>
+<li class="mainmenu__item mainmenu__item--blog"><a href="https://repebble.com/blog" target="_blank"><span>Blog</span></a></li>
+<li class="mainmenu__item mainmenu__item--more"><a href="/more/"><span>More</span></a></li>
+
+    </ul>
+    <div class="sidebar__legal">
+      <a href="https://repebble.com/privacy/" target="_blank">Privacy</a>
+      <br>
+      <a href="https://repebble.com/terms" target="_blank">Cookies</a>
+    </div>
+    <a href="https://developer.rePebble.com/dashboard" target="_blank" class="sidebar__footer">Publish</a>
+  </div>
+  <div class="section-menu section-menu--guides section-menu--light">
+    <div class="section-menu__header">
+      <h3><a href="/guides/">Guides</a></h3>
+    </div>
+    <ul>
+      <li class="section-menu__item">
+        <a href="/guides/toc/">Table of Contents</a>
+      </li>
+      
+        
+        
+        
+        <li class="section-menu__item open">
+          <a href="/guides/alloy/">
+            
+            Alloy
+          </a>
+          
+            <ul>
+            
+            
+            
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/getting-started/"><span>Getting Started with Alloy</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/piu-guide/"><span>Piu UI Framework</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/poco-guide/"><span>Poco Graphics</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/sensors-and-input/"><span>Sensors and Input</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/storage/"><span>Storage</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/networking/"><span>Networking</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/app-messages/"><span>App Messages</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/watchfaces/"><span>Watchfaces</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/animations/"><span>Animations</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem active">
+                  <a href="/guides/alloy/port-drawing/"><span>Port (Custom Drawing)</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/advanced-networking/"><span>Advanced Networking</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/ffi/"><span>Native Functions (FFI)</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/dictation/"><span>Dictation</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/wakeups/"><span>Wakeups</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/vibration/"><span>Vibration</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/device-info/"><span>Device Info and App Events</span></a>
+                </li>
+              
+            
+            
+            </ul>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/app-resources/">
+            
+            App Resources
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/best-practices/">
+            
+            Best Practices
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/communication/">
+            
+            Communication
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/debugging/">
+            
+            Debugging
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/design-and-interaction/">
+            
+            Design and Interaction
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/events-and-services/">
+            
+            Events and Services
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/graphics-and-animations/">
+            
+            Graphics and Animations
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/pebble-packages/">
+            
+            Pebble Packages
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/pebble-timeline/">
+            
+            Pebble Timeline
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/tools-and-resources/">
+            
+            Tools and Resources
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/user-interfaces/">
+            
+            User Interfaces
+          </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+</div><!-- sidebar__wrapper -->
+<div class="content content--section-menu">
+  
+
+<div class="search">
+  <a  href="javascript:void(0);" class="mobile-nav__hamburger js-mobile-nav-toggle"><i class="fa fa-reorder"></i></a>
+  <i class="fa fa-lg fa-search search__icon"></i><input type="search" id="quicksearch" placeholder="Search Developer Site">
+</div>
+<div class="quicksearch" style="display: none;" id="quicksearch__results"></div>
+<div id="search__blackout" style="display: none;"></div>
+
+  <div class="container">
+    
+
+
+<div class="visible-m visible-s visible-xs row">
+  <div class="col-xs-12">
+    <div class="form__group">
+      <div class="select-style no-label">
+        <select class="js-toc-select">
+          
+            <option value="what-is-port">What is Port?</option>
+          
+            <option value="basic-port-usage">Basic Port Usage</option>
+          
+            <option value="port-drawing-methods">Port Drawing Methods</option>
+          
+            <option value="filling-shapes">- Filling Shapes</option>
+          
+            <option value="drawing-text">- Drawing Text</option>
+          
+            <option value="drawing-images">- Drawing Images</option>
+          
+            <option value="updating-port-content">Updating Port Content</option>
+          
+            <option value="complete-example-live-bar-chart">Complete Example: Live Bar Chart</option>
+          
+            <option value="combining-port-with-piu-layout">Combining Port with Piu Layout</option>
+          
+            <option value="port-vs-poco">Port vs Poco</option>
+          
+            <option value="performance-tips">Performance Tips</option>
+          
+            <option value="common-patterns">Common Patterns</option>
+          
+            <option value="progress-bar">- Progress Bar</option>
+          
+            <option value="gauge-meter">- Gauge/Meter</option>
+          
+            <option value="examples">Examples</option>
+          
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-l-8 col-m-12">
+    <h1 class="pagetitle">Port (Custom Drawing)</h1>
+    
+    <div class="markdown markdown--staff">
+    <p>The <code>Port</code> content type lets you do custom drawing within a Piu application.
+This combines the best of both worlds: Piu&#39;s declarative layout and component
+system with Poco-style direct drawing.</p>
+<blockquote>
+<p><strong>Note</strong>: All code in this guide runs on the watch in <code>src/embeddedjs/main.js</code>.</p></blockquote>
+<h2 id="what-is-port" class="anchor">What is Port?</h2><p>Port is a Piu content type that provides a canvas for custom drawing. Unlike
+other Piu content types that are styled with skins, Port content uses an
+<code>onDraw</code> callback where you can draw shapes, text, and graphics.</p><h2 id="basic-port-usage" class="anchor">Basic Port Usage</h2><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">MyPortBehavior</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Behavior</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onDraw</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Draw a blue rectangle</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="s2">"#0066cc"</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Draw some text</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Style</span><span class="p">({</span><span class="w"> </span><span class="nx">font</span><span class="o">:</span><span class="w"> </span><span class="s2">"18px Gothic"</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">"white"</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">drawString</span><span class="p">(</span><span class="s2">"Hello!"</span><span class="p">,</span><span class="w"> </span><span class="nx">style</span><span class="p">,</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">myPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Port</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">top</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">bottom</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Behavior</span><span class="o">:</span><span class="w"> </span><span class="nx">MyPortBehavior</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">application</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Application</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">skin</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Skin</span><span class="p">({</span><span class="w"> </span><span class="nx">fill</span><span class="o">:</span><span class="w"> </span><span class="s2">"white"</span><span class="w"> </span><span class="p">})</span>
+<span class="p">});</span>
+
+<span class="nx">application</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">myPort</span><span class="p">);</span>
+</pre></div><h2 id="port-drawing-methods" class="anchor">Port Drawing Methods</h2><h3 id="filling-shapes" class="anchor">Filling Shapes</h3><div class="highlight"><pre><span></span><span class="nx">onDraw</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Fill a rectangle with a color</span>
+<span class="w">    </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Fill with hex color</span>
+<span class="w">    </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="s2">"#ff6600"</span><span class="p">,</span><span class="w"> </span><span class="mf">70</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div><h3 id="drawing-text" class="anchor">Drawing Text</h3><div class="highlight"><pre><span></span><span class="nx">onDraw</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Style</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">font</span><span class="o">:</span><span class="w"> </span><span class="s2">"bold 18px Gothic"</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">"black"</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Draw text at position</span>
+<span class="w">    </span><span class="nx">port</span><span class="p">.</span><span class="nx">drawString</span><span class="p">(</span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w"> </span><span class="nx">style</span><span class="p">,</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Measure text width for alignment</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Centered"</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">measured</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">style</span><span class="p">.</span><span class="nx">measure</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">textX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">measured</span><span class="p">.</span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">port</span><span class="p">.</span><span class="nx">drawString</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span><span class="w"> </span><span class="nx">style</span><span class="p">,</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="nx">textX</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div><h3 id="drawing-images" class="anchor">Drawing Images</h3><div class="highlight"><pre><span></span><span class="nx">onDraw</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Texture</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span><span class="w">  </span><span class="c1">// Resource ID</span>
+<span class="w">    </span><span class="nx">port</span><span class="p">.</span><span class="nx">drawTexture</span><span class="p">(</span><span class="nx">texture</span><span class="p">,</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">texture</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">texture</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div><h2 id="updating-port-content" class="anchor">Updating Port Content</h2><p>Call <code>invalidate()</code> to trigger a redraw:</p><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">AnimatedPortBehavior</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Behavior</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onDisplaying</span><span class="p">(</span><span class="nx">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span><span class="w">  </span><span class="c1">// Update every 100ms</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">onTimeChanged</span><span class="p">(</span><span class="nx">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">invalidate</span><span class="p">();</span><span class="w">  </span><span class="c1">// Request redraw</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">onDraw</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Clear background</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Draw bar based on current value</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">barWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="s2">"green"</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="nx">barWidth</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div><h2 id="complete-example-live-bar-chart" class="anchor">Complete Example: Live Bar Chart</h2><p>This example creates an animated bar chart with random data:</p><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">GRAY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">BLUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#1932ab"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">textStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Style</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">font</span><span class="o">:</span><span class="w"> </span><span class="s2">"bold 18px Gothic"</span>
+<span class="p">});</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">GraphBehavior</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Behavior</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onDisplaying</span><span class="p">(</span><span class="nx">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Initialize data array</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">barCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">screen</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">16</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="nx">barCount</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">fill</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Start animation</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">onTimeChanged</span><span class="p">(</span><span class="nx">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Shift data and add new random value</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100</span><span class="p">));</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">invalidate</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">onDraw</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Draw Y-axis labels and grid lines</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="nx">yOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mf">20</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">labelWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">textStyle</span><span class="p">.</span><span class="nx">measure</span><span class="p">(</span><span class="nx">label</span><span class="p">).</span><span class="nx">width</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">port</span><span class="p">.</span><span class="nx">drawString</span><span class="p">(</span><span class="nx">label</span><span class="p">,</span><span class="w"> </span><span class="nx">textStyle</span><span class="p">,</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">labelWidth</span><span class="p">,</span><span class="w"> </span><span class="nx">yOffset</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="nx">GRAY</span><span class="p">,</span><span class="w"> </span><span class="mf">35</span><span class="p">,</span><span class="w"> </span><span class="nx">yOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">35</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">yOffset</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Draw bars</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">xOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">35</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">barHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">10</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="nx">BLUE</span><span class="p">,</span><span class="w"> </span><span class="nx">xOffset</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">barHeight</span><span class="p">,</span><span class="w"> </span><span class="mf">12</span><span class="p">,</span><span class="w"> </span><span class="nx">barHeight</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">xOffset</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">14</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Port</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">top</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">bottom</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">Behavior</span><span class="o">:</span><span class="w"> </span><span class="nx">GraphBehavior</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">application</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Application</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">skin</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Skin</span><span class="p">({</span><span class="w"> </span><span class="nx">fill</span><span class="o">:</span><span class="w"> </span><span class="s2">"white"</span><span class="w"> </span><span class="p">})</span>
+<span class="p">});</span>
+
+<span class="nx">application</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">graph</span><span class="p">);</span>
+</pre></div><h2 id="combining-port-with-piu-layout" class="anchor">Combining Port with Piu Layout</h2><p>Port works within Piu&#39;s layout system, so you can combine custom drawing
+with standard Piu components:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"piu/MC"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">headerSkin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Skin</span><span class="p">({</span><span class="w"> </span><span class="nx">fill</span><span class="o">:</span><span class="w"> </span><span class="s2">"darkblue"</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">headerStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Style</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">font</span><span class="o">:</span><span class="w"> </span><span class="s2">"bold 18px Gothic"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">"white"</span>
+<span class="p">});</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">ChartBehavior</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Behavior</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onDisplaying</span><span class="p">(</span><span class="nx">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">30</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="mf">45</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">60</span><span class="p">,</span><span class="w"> </span><span class="mf">75</span><span class="p">];</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">invalidate</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">onDraw</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">barWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">4</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">xPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">barHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">100</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">height</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="s2">"#4CAF50"</span><span class="p">,</span><span class="w"> </span><span class="nx">xPos</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">barHeight</span><span class="p">,</span><span class="w"> </span><span class="nx">barWidth</span><span class="p">,</span><span class="w"> </span><span class="nx">barHeight</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">xPos</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">barWidth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">4</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">DashboardApp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Application</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">    </span><span class="nx">skin</span><span class="o">:</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Skin</span><span class="p">({</span><span class="w"> </span><span class="nx">fill</span><span class="o">:</span><span class="w"> </span><span class="s2">"#f0f0f0"</span><span class="w"> </span><span class="p">}),</span>
+<span class="w">    </span><span class="nx">contents</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nx">Column</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">top</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">bottom</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">contents</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="c1">// Header using standard Piu Label</span>
+<span class="w">                </span><span class="nx">Label</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">top</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="mf">40</span><span class="p">,</span><span class="w"> </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">skin</span><span class="o">:</span><span class="w"> </span><span class="nx">headerSkin</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">style</span><span class="o">:</span><span class="w"> </span><span class="nx">headerStyle</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">string</span><span class="o">:</span><span class="w"> </span><span class="s2">"Weekly Stats"</span>
+<span class="w">                </span><span class="p">}),</span>
+<span class="w">                </span><span class="c1">// Custom chart using Port</span>
+<span class="w">                </span><span class="nx">Port</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">top</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="nx">bottom</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">                    </span><span class="nx">Behavior</span><span class="o">:</span><span class="w"> </span><span class="nx">ChartBehavior</span>
+<span class="w">                </span><span class="p">})</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}));</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">DashboardApp</span><span class="p">({},</span><span class="w"> </span><span class="p">{});</span>
+</pre></div><h2 id="port-vs-poco" class="anchor">Port vs Poco</h2>
+<table><thead>
+<tr>
+<th>Feature</th>
+<th>Port</th>
+<th>Poco</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Integration</td>
+<td>Works within Piu apps</td>
+<td>Standalone rendering</td>
+</tr>
+<tr>
+<td>Layout</td>
+<td>Uses Piu&#39;s layout system</td>
+<td>Manual positioning</td>
+</tr>
+<tr>
+<td>Updates</td>
+<td>Call <code>invalidate()</code></td>
+<td>Call <code>begin()</code>/<code>end()</code></td>
+</tr>
+<tr>
+<td>Use case</td>
+<td>Custom drawing in Piu apps</td>
+<td>Full-screen graphics</td>
+</tr>
+</tbody></table>
+<p>Use Port when you want custom drawing as part of a larger Piu UI. Use Poco
+when you need full control over the entire screen.</p><h2 id="performance-tips" class="anchor">Performance Tips</h2>
+<ol>
+<li><p><strong>Minimize invalidate() calls</strong>: Only call when data actually changes.</p></li>
+<li><p><strong>Draw only what&#39;s needed</strong>: The <code>onDraw</code> callback receives bounds -
+use them to clip your drawing.</p></li>
+<li><p><strong>Cache expensive calculations</strong>: Calculate positions and sizes once,
+not on every draw.</p></li>
+<li><p><strong>Use appropriate intervals</strong>: 100ms intervals are usually sufficient
+for charts. Use shorter intervals only when smooth animation is needed.</p></li>
+</ol>
+<h2 id="common-patterns" class="anchor">Common Patterns</h2><h3 id="progress-bar" class="anchor">Progress Bar</h3><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">ProgressBehavior</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Behavior</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onCreate</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">progress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">progress</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">setProgress</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">progress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">));</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">invalidate</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">onDraw</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Background</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="s2">"#ddd"</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Progress fill</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">fillWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">progress</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="s2">"#4CAF50"</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">fillWidth</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div><h3 id="gauge-meter" class="anchor">Gauge/Meter</h3><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">GaugeBehavior</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Behavior</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onCreate</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">max</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">onDraw</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">centerX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">centerY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Background circle (using rectangles as approximation)</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="s2">"#eee"</span><span class="p">,</span><span class="w"> </span><span class="nx">centerX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">radius</span><span class="p">,</span><span class="w"> </span><span class="nx">centerY</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">radius</span><span class="p">,</span>
+<span class="w">                       </span><span class="nx">radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Value indicator</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">percentage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">max</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">indicatorHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">percentage</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">port</span><span class="p">.</span><span class="nx">fillColor</span><span class="p">(</span><span class="s2">"#2196F3"</span><span class="p">,</span>
+<span class="w">                       </span><span class="nx">centerX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">radius</span><span class="p">,</span><span class="w"> </span><span class="nx">centerY</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">radius</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">indicatorHeight</span><span class="p">,</span>
+<span class="w">                       </span><span class="nx">radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">indicatorHeight</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div><h2 id="examples" class="anchor">Examples</h2><p>The <a href="https://github.com/Moddable-OpenSource/pebble-examples" title="" class="">Pebble Examples</a>
+repository includes a Port example:</p>
+<ul>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopiu-port" title="" class=""><code>hellopiu-port</code></a> - animated bar graph using a Piu Port with custom drawing</li>
+</ul>
+
+    </div>
+    
+    <a id="comments" class="anchor"></a>
+    <div id="disqus_thread" aria-live="polite" data-post-url="https://developer.repebble.com/guides/alloy/port-drawing/">
+      You need JavaScript enabled to read and post comments.
+    </div>
+    
+    
+  </div>
+  
+    <div class="col-m-4 hidden-s hidden-xs hidden-m">
+      <div class="gray-box gray-box--fixed gray-box--scrollspy">
+        
+
+
+  <h3>Overview</h3>
+  <ul class="toc">
+    
+      <li class="toc__item toc__item--level1"><a href="#what-is-port">What is Port?</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#basic-port-usage">Basic Port Usage</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#port-drawing-methods">Port Drawing Methods</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#filling-shapes">Filling Shapes</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#drawing-text">Drawing Text</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#drawing-images">Drawing Images</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#updating-port-content">Updating Port Content</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#complete-example-live-bar-chart">Complete Example: Live Bar Chart</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#combining-port-with-piu-layout">Combining Port with Piu Layout</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#port-vs-poco">Port vs Poco</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#performance-tips">Performance Tips</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#common-patterns">Common Patterns</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#progress-bar">Progress Bar</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#gauge-meter">Gauge/Meter</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#examples">Examples</a></li>
+    
+  </ul>
+
+        
+        
+      </div>
+    </div>
+  
+</div>
+
+  </div>
+</div>
+
+
+    
+  </div>
+  <script type="text/javascript">
+    var searchPrimary = '';
+  </script>
+  
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/libs-ff95f116ad324def69395db037808d5a.js"></script>
+  
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/templates.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/app.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/search.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/quicksearch.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/disqus.js"></script>
+  
+</body>
+</html>

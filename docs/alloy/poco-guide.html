@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<!--
+ Copyright 2025 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Poco Graphics // Pebble Developers</title>
+  <meta property="og:site_name" content="Pebble Developers" />
+  <meta property="og:title" content="Poco Graphics" />
+  <meta property="og:url" content="https://developer.repebble.com/guides/alloy/poco-guide/" />
+  
+  <meta property="og:description" content="Low-level graphics rendering with the Poco framework.
+" />
+  <meta name="description" content="Low-level graphics rendering with the Poco framework.
+">
+  
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:image" content="https://developer.repebble.com/assets/images/menu/guides.png" />
+  
+  
+  <meta name="theme-color" content="#e5e327">
+  <link rel="canonical" href="https://developer.repebble.com/guides/alloy/poco-guide/">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+  <link href="https://developer.repebble.com/assets/favicon.png" rel="shortcut icon" type="image/vnd.microsoft.icon" id="favicon">
+  <link rel="stylesheet" type="text/css" href="https://developer.repebble.com/assets/css/main.css">
+  
+  <noscript>
+  <link rel="stylesheet" type="text/css" href="https://developer.repebble.com/assets/css/noscript.css">
+  </noscript>
+  
+  <script type="text/javascript" >
+    var _rollbarConfig = {
+      accessToken: '',
+      captureUncaught: true,
+      payload: {
+        environment: 'production'
+      }
+    };
+    !function(a,b){function c(b){this.shimId=++h,this.notifier=null,this.parentShim=b,this.logger=function(){},a.console&&void 0===a.console.shimId&&(this.logger=a.console.log)}function d(b,c,d){a._rollbarWrappedError&&(d[4]||(d[4]=a._rollbarWrappedError),d[5]||(d[5]=a._rollbarWrappedError._rollbarContext),a._rollbarWrappedError=null),b.uncaughtError.apply(b,d),c&&c.apply(a,d)}function e(b){var d=c;return g(function(){if(this.notifier)return this.notifier[b].apply(this.notifier,arguments);var c=this,e="scope"===b;e&&(c=new d(this));var f=Array.prototype.slice.call(arguments,0),g={shim:c,method:b,args:f,ts:new Date};return a._rollbarShimQueue.push(g),e?c:void 0})}function f(a,b){if(b.hasOwnProperty&&b.hasOwnProperty("addEventListener")){var c=b.addEventListener;b.addEventListener=function(b,d,e){c.call(this,b,a.wrap(d),e)};var d=b.removeEventListener;b.removeEventListener=function(a,b,c){d.call(this,a,b&&b._wrapped?b._wrapped:b,c)}}}function g(a,b){return b=b||this.logger,function(){try{return a.apply(this,arguments)}catch(c){b("Rollbar internal error:",c)}}}var h=0;c.init=function(a,b){var e=b.globalAlias||"Rollbar";if("object"==typeof a[e])return a[e];a._rollbarShimQueue=[],a._rollbarWrappedError=null,b=b||{};var h=new c;return g(function(){if(h.configure(b),b.captureUncaught){var c=a.onerror;a.onerror=function(){var a=Array.prototype.slice.call(arguments,0);d(h,c,a)};var g,i,j="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(g=0;g<j.length;++g)i=j[g],a[i]&&a[i].prototype&&f(h,a[i].prototype)}return a[e]=h,h},h.logger)()},c.prototype.loadFull=function(a,b,c,d,e){var f=g(function(){var a=b.createElement("script"),e=b.getElementsByTagName("script")[0];a.src=d.rollbarJsUrl,a.async=!c,a.onload=h,e.parentNode.insertBefore(a,e)},this.logger),h=g(function(){var b;if(void 0===a._rollbarPayloadQueue){var c,d,f,g;for(b=new Error("rollbar.js did not load");c=a._rollbarShimQueue.shift();)for(f=c.args,g=0;g<f.length;++g)if(d=f[g],"function"==typeof d){d(b);break}}"function"==typeof e&&e(b)},this.logger);g(function(){c?f():a.addEventListener?a.addEventListener("load",f,!1):a.attachEvent("onload",f)},this.logger)()},c.prototype.wrap=function(b,c){try{var d;if(d="function"==typeof c?c:function(){return c||{}},"function"!=typeof b)return b;if(b._isWrap)return b;if(!b._wrapped){b._wrapped=function(){try{return b.apply(this,arguments)}catch(c){throw c._rollbarContext=d(),c._rollbarContext._wrappedSource=b.toString(),a._rollbarWrappedError=c,c}},b._wrapped._isWrap=!0;for(var e in b)b.hasOwnProperty(e)&&(b._wrapped[e]=b[e])}return b._wrapped}catch(f){return b}};for(var i="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError".split(","),j=0;j<i.length;++j)c.prototype[i[j]]=e(i[j]);var k="//d37gvrvc0wt4s1.cloudfront.net/js/v1.1/rollbar.min.js";_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||k;var l=c.init(a,_rollbarConfig);l.loadFull(a,b,!1,_rollbarConfig)}(window,document);
+  </script>
+  <script type="text/javascript" async>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+</head>
+<body class="">
+  <div class="mmenu__wrapper">
+    <div class="sidebar__wrapper sidebar__wrapper--sectionmenu">
+  <div class="sidebar sidebar--narrow">
+    <a href="/" class="sidebar__header">
+      <span>pebble</span>
+    </a>
+    <ul class="mainmenu">
+      
+
+<li class="mainmenu__item mainmenu__item--getting-started"><a href="/tutorials/"><span>Tutorials</span></a></li>
+<li class="mainmenu__item mainmenu__item--sdk"><a href="/sdk/"><span>Get the SDK</span></a></li>
+<li class="mainmenu__item mainmenu__item--guides active"><a href="/guides/"><span>Guides</span></a></li>
+<li class="mainmenu__item mainmenu__item--docs"><a href="/docs/"><span>Documentation</span></a></li>
+<li class="mainmenu__item mainmenu__item--examples"><a href="/examples/"><span>Examples</span></a></li>
+<li class="mainmenu__item mainmenu__item--community"><a href="/community/"><span>Community</span></a></li>
+<li class="mainmenu__item mainmenu__item--blog"><a href="https://repebble.com/blog" target="_blank"><span>Blog</span></a></li>
+<li class="mainmenu__item mainmenu__item--more"><a href="/more/"><span>More</span></a></li>
+
+    </ul>
+    <div class="sidebar__legal">
+      <a href="https://repebble.com/privacy/" target="_blank">Privacy</a>
+      <br>
+      <a href="https://repebble.com/terms" target="_blank">Cookies</a>
+    </div>
+    <a href="https://developer.rePebble.com/dashboard" target="_blank" class="sidebar__footer">Publish</a>
+  </div>
+  <div class="section-menu section-menu--guides section-menu--light">
+    <div class="section-menu__header">
+      <h3><a href="/guides/">Guides</a></h3>
+    </div>
+    <ul>
+      <li class="section-menu__item">
+        <a href="/guides/toc/">Table of Contents</a>
+      </li>
+      
+        
+        
+        
+        <li class="section-menu__item open">
+          <a href="/guides/alloy/">
+            
+            Alloy
+          </a>
+          
+            <ul>
+            
+            
+            
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/getting-started/"><span>Getting Started with Alloy</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/piu-guide/"><span>Piu UI Framework</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem active">
+                  <a href="/guides/alloy/poco-guide/"><span>Poco Graphics</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/sensors-and-input/"><span>Sensors and Input</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/storage/"><span>Storage</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/networking/"><span>Networking</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/app-messages/"><span>App Messages</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/watchfaces/"><span>Watchfaces</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/animations/"><span>Animations</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/port-drawing/"><span>Port (Custom Drawing)</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/advanced-networking/"><span>Advanced Networking</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/ffi/"><span>Native Functions (FFI)</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/dictation/"><span>Dictation</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/wakeups/"><span>Wakeups</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/vibration/"><span>Vibration</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/device-info/"><span>Device Info and App Events</span></a>
+                </li>
+              
+            
+            
+            </ul>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/app-resources/">
+            
+            App Resources
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/best-practices/">
+            
+            Best Practices
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/communication/">
+            
+            Communication
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/debugging/">
+            
+            Debugging
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/design-and-interaction/">
+            
+            Design and Interaction
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/events-and-services/">
+            
+            Events and Services
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/graphics-and-animations/">
+            
+            Graphics and Animations
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/pebble-packages/">
+            
+            Pebble Packages
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/pebble-timeline/">
+            
+            Pebble Timeline
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/tools-and-resources/">
+            
+            Tools and Resources
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/user-interfaces/">
+            
+            User Interfaces
+          </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+</div><!-- sidebar__wrapper -->
+<div class="content content--section-menu">
+  
+
+<div class="search">
+  <a  href="javascript:void(0);" class="mobile-nav__hamburger js-mobile-nav-toggle"><i class="fa fa-reorder"></i></a>
+  <i class="fa fa-lg fa-search search__icon"></i><input type="search" id="quicksearch" placeholder="Search Developer Site">
+</div>
+<div class="quicksearch" style="display: none;" id="quicksearch__results"></div>
+<div id="search__blackout" style="display: none;"></div>
+
+  <div class="container">
+    
+
+
+<div class="visible-m visible-s visible-xs row">
+  <div class="col-xs-12">
+    <div class="form__group">
+      <div class="select-style no-label">
+        <select class="js-toc-select">
+          
+            <option value="getting-started">Getting Started</option>
+          
+            <option value="basic-drawing">Basic Drawing</option>
+          
+            <option value="colors">Colors</option>
+          
+            <option value="drawing-shapes">Drawing Shapes</option>
+          
+            <option value="rectangles">- Rectangles</option>
+          
+            <option value="rounded-rectangles">- Rounded Rectangles</option>
+          
+            <option value="lines">- Lines</option>
+          
+            <option value="circles">- Circles</option>
+          
+            <option value="text-rendering">Text Rendering</option>
+          
+            <option value="using-pebble-built-in-fonts">- Using Pebble Built-in Fonts</option>
+          
+            <option value="centering-text">- Centering Text</option>
+          
+            <option value="using-custom-fonts-moddable-sdk-fonts">- Using Custom Fonts (Moddable SDK Fonts)</option>
+          
+            <option value="drawing-images">Drawing Images</option>
+          
+            <option value="bitmaps">- Bitmaps</option>
+          
+            <option value="pdc-pebble-draw-command-images">- PDC (Pebble Draw Command) Images</option>
+          
+            <option value="pdc-sequences-animations">- PDC Sequences (Animations)</option>
+          
+            <option value="animation">Animation</option>
+          
+            <option value="rotating-pdc-images">- Rotating PDC Images</option>
+          
+            <option value="scaling-pdc-images">- Scaling PDC Images</option>
+          
+            <option value="pdc-transformation-methods">- PDC Transformation Methods</option>
+          
+            <option value="complete-example-animated-display">Complete Example: Animated Display</option>
+          
+            <option value="screen-properties">Screen Properties</option>
+          
+            <option value="performance-tips">Performance Tips</option>
+          
+            <option value="poco-vs-piu">Poco vs Piu</option>
+          
+            <option value="examples">Examples</option>
+          
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-l-8 col-m-12">
+    <h1 class="pagetitle">Poco Graphics</h1>
+    
+    <div class="markdown markdown--staff">
+    <p>Poco is a low-level graphics rendering framework that gives you direct control
+over pixel drawing. It&#39;s ideal for custom graphics, games, and watchfaces
+where you need precise control over rendering.</p>
+<blockquote>
+<p><strong>Note</strong>: All code in this guide runs on the watch in <code>src/embeddedjs/main.js</code>.</p></blockquote>
+<h2 id="getting-started" class="anchor">Getting Started</h2><p>Import Poco and create a renderer instance:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+</pre></div><p>The <code>screen</code> global provides access to the Pebble display.</p><h2 id="basic-drawing" class="anchor">Basic Drawing</h2><p>All drawing happens between <code>begin()</code> and <code>end()</code> calls:</p><div class="highlight"><pre><span></span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Drawing commands here</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</pre></div><p>You can also specify a clip region to update only part of the screen:</p><div class="highlight"><pre><span></span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Only draws within the specified rectangle</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</pre></div><h2 id="colors" class="anchor">Colors</h2><p>Create colors using <code>makeColor()</code> with RGB values (0-255):</p><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">white</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">red</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">gray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">lightBlue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mh">0x80</span><span class="p">,</span><span class="w"> </span><span class="mh">0xc0</span><span class="p">,</span><span class="w"> </span><span class="mh">0xff</span><span class="p">);</span>
+</pre></div><h2 id="drawing-shapes" class="anchor">Drawing Shapes</h2><h3 id="rectangles" class="anchor">Rectangles</h3><div class="highlight"><pre><span></span><span class="c1">// Filled rectangle</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
+
+<span class="c1">// Example: fill the entire screen white</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">white</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+</pre></div><h3 id="rounded-rectangles" class="anchor">Rounded Rectangles</h3><div class="highlight"><pre><span></span><span class="c1">// Rounded rectangle with radius</span>
+<span class="c1">// corners is a bitmask: 0b0001=TL, 0b0010=TR, 0b0100=BL, 0b1000=BR</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">drawRoundRect</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">radius</span><span class="p">,</span><span class="w"> </span><span class="nx">corners</span><span class="p">);</span>
+
+<span class="c1">// All corners rounded</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">drawRoundRect</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">);</span>
+
+<span class="c1">// Only top corners rounded</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">drawRoundRect</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">,</span><span class="w"> </span><span class="mb">0b0011</span><span class="p">);</span>
+
+<span class="c1">// Frame (outline) of rounded rectangle</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">frameRoundRect</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">radius</span><span class="p">);</span>
+</pre></div><h3 id="lines" class="anchor">Lines</h3><div class="highlight"><pre><span></span><span class="c1">// Draw a line with specified thickness</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">drawLine</span><span class="p">(</span><span class="nx">x1</span><span class="p">,</span><span class="w"> </span><span class="nx">y1</span><span class="p">,</span><span class="w"> </span><span class="nx">x2</span><span class="p">,</span><span class="w"> </span><span class="nx">y2</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">thickness</span><span class="p">);</span>
+
+<span class="c1">// Example: diagonal lines</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">drawLine</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">drawLine</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span>
+</pre></div><h3 id="circles" class="anchor">Circles</h3><div class="highlight"><pre><span></span><span class="c1">// Draw a circle or arc</span>
+<span class="c1">// startAngle and endAngle are in degrees</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">drawCircle</span><span class="p">(</span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">centerX</span><span class="p">,</span><span class="w"> </span><span class="nx">centerY</span><span class="p">,</span><span class="w"> </span><span class="nx">radius</span><span class="p">,</span><span class="w"> </span><span class="nx">startAngle</span><span class="p">,</span><span class="w"> </span><span class="nx">endAngle</span><span class="p">);</span>
+
+<span class="c1">// Full circle</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">drawCircle</span><span class="p">(</span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">360</span><span class="p">);</span>
+
+<span class="c1">// Arc (quarter circle)</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">drawCircle</span><span class="p">(</span><span class="nx">blue</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">);</span>
+</pre></div><h2 id="text-rendering" class="anchor">Text Rendering</h2><h3 id="using-pebble-built-in-fonts" class="anchor">Using Pebble Built-in Fonts</h3><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">font</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">Font</span><span class="p">(</span><span class="s2">"Bitham-Black"</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+
+<span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="s2">"Hello!"</span><span class="p">,</span><span class="w"> </span><span class="nx">font</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</pre></div><p>Available Pebble fonts:
+- <code>Gothic-Regular</code> (various sizes)
+- <code>Gothic-Bold</code>
+- <code>Bitham-Black</code>
+- <code>Bitham-Bold</code>
+- <code>Roboto-Condensed</code>
+- <code>Leco-Regular</code>
+- <code>Droid-Serif</code></p><p>The available sizes are limited for each font family. See the
+<a href="/guides/app-resources/system-fonts/" title="" class="">System Fonts</a> reference for the full table
+of all fonts, styles, and sizes.</p><h3 id="centering-text" class="anchor">Centering Text</h3><p>Use <code>getTextWidth()</code> to measure text for centering:</p><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Hello!"</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">getTextWidth</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">font</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">font</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+
+<span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">font</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">);</span>
+</pre></div><h3 id="using-custom-fonts-moddable-sdk-fonts" class="anchor">Using Custom Fonts (Moddable SDK Fonts)</h3><p>For custom fonts bundled with your app, use <code>parseBMF</code> and <code>parseRLE</code>:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">parseBMF</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/parseBMF"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">parseRLE</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/parseRLE"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+
+<span class="c1">// Load custom font from resources</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">getFont</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">font</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parseBMF</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">Resource</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">-</span><span class="si">${</span><span class="nx">size</span><span class="si">}</span><span class="sb">.fnt`</span><span class="p">));</span>
+<span class="w">    </span><span class="nx">font</span><span class="p">.</span><span class="nx">bitmap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parseRLE</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="nx">Resource</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">-</span><span class="si">${</span><span class="nx">size</span><span class="si">}</span><span class="sb">-alpha.bm4`</span><span class="p">));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">font</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">openSans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getFont</span><span class="p">(</span><span class="s2">"OpenSans-Regular"</span><span class="p">,</span><span class="w"> </span><span class="mf">21</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">noto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getFont</span><span class="p">(</span><span class="s2">"NotoSansJP-Regular"</span><span class="p">,</span><span class="w"> </span><span class="mf">24</span><span class="p">);</span>
+
+<span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="s2">"Hello!"</span><span class="p">,</span><span class="w"> </span><span class="nx">openSans</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="s2">"新宿出口"</span><span class="p">,</span><span class="w"> </span><span class="nx">noto</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">40</span><span class="p">);</span><span class="w">  </span><span class="c1">// Japanese text</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</pre></div><p>Custom fonts allow Unicode support and unique typography not available in
+built-in Pebble fonts.</p><h2 id="drawing-images" class="anchor">Drawing Images</h2><h3 id="bitmaps" class="anchor">Bitmaps</h3><p>Load bitmaps from resources using <code>PebbleBitmap</code>:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+
+<span class="c1">// Load bitmap by resource ID</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">bitmap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">.</span><span class="nx">PebbleBitmap</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+
+<span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Center the bitmap</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">bitmap</span><span class="p">.</span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">bitmap</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawBitmap</span><span class="p">(</span><span class="nx">bitmap</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">);</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</pre></div><p>Bitmaps have <code>width</code> and <code>height</code> properties for positioning.</p><h3 id="pdc-pebble-draw-command-images" class="anchor">PDC (Pebble Draw Command) Images</h3><p>PDC images are vector graphics converted from SVG:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+
+<span class="c1">// Load PDC image by resource ID</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">.</span><span class="nx">PebbleDrawCommandImage</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+
+<span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Center the PDC image</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">pdc</span><span class="p">.</span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">pdc</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawDCI</span><span class="p">(</span><span class="nx">pdc</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">);</span>
+<span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</pre></div><h3 id="pdc-sequences-animations" class="anchor">PDC Sequences (Animations)</h3><p>PDC sequences are animated vector graphics. Use the <code>time</code> property to advance
+through frames:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">gray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">dcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">.</span><span class="nx">PebbleDrawCommandSequence</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Sequence dimensions: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">dcs</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">" x "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">dcs</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Sequence duration: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">dcs</span><span class="p">.</span><span class="nx">duration</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">" ms"</span><span class="p">);</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawDCI</span><span class="p">(</span><span class="nx">dcs</span><span class="p">,</span>
+<span class="w">            </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">dcs</span><span class="p">.</span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">            </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">dcs</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Advance to next frame</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">frameDuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">dcs</span><span class="p">.</span><span class="nx">frameDuration</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">dcs</span><span class="p">.</span><span class="nx">time</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">frameDuration</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">draw</span><span class="p">,</span><span class="w"> </span><span class="nx">frameDuration</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">draw</span><span class="p">();</span>
+</pre></div><p>PDC sequences have these properties:</p>
+<ul>
+<li><code>width</code>, <code>height</code> - Dimensions of the sequence</li>
+<li><code>duration</code> - Total animation duration in milliseconds</li>
+<li><code>frameDuration</code> - Duration of current frame</li>
+<li><code>time</code> - Current playback position (set this to advance)</li>
+</ul>
+<h2 id="animation" class="anchor">Animation</h2><p>Use <code>setInterval()</code> for frame-based animations. The interval is a request - if
+Pebble OS can&#39;t render fast enough, the actual frame rate will be lower.
+Smoothest results come from requesting a frame rate that can be consistently
+achieved:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">white</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// Clear screen</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">white</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Draw moving circle</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawCircle</span><span class="p">(</span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">360</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span><span class="w">  </span><span class="c1">// ~20 fps</span>
+</pre></div><h3 id="rotating-pdc-images" class="anchor">Rotating PDC Images</h3><p>PDC images can be transformed. Use <code>clone()</code> and <code>rotate()</code> for rotation:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">gray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">dci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">.</span><span class="nx">PebbleDrawCommandImage</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"PDC dimensions: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">dci</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">" x "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">dci</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Clone, rotate around center, then draw</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawDCI</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">dci</span><span class="p">.</span><span class="nx">clone</span><span class="p">().</span><span class="nx">rotate</span><span class="p">(</span><span class="nx">angle</span><span class="p">,</span><span class="w"> </span><span class="nx">dci</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">dci</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">),</span>
+<span class="w">            </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">dci</span><span class="p">.</span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">            </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">dci</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">        </span><span class="nx">angle</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">30</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span><span class="w">  </span><span class="c1">// ~20fps</span>
+</pre></div><p>The <code>rotate()</code> method takes angle in radians and pivot point coordinates.</p><h3 id="scaling-pdc-images" class="anchor">Scaling PDC Images</h3><p>PDC images can also be scaled dynamically:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">gray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">dci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">.</span><span class="nx">PebbleDrawCommandImage</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"PDC size: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">dci</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">" x "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">dci</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Animate scale with elastic easing</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">progress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">start</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">1500</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1500</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">elasticEaseOut</span><span class="p">(</span><span class="nx">progress</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Center the scaled image</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">cx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">dci</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">scale</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">cy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">dci</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">scale</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawDCI</span><span class="p">(</span><span class="nx">dci</span><span class="p">.</span><span class="nx">clone</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">scale</span><span class="p">),</span><span class="w"> </span><span class="nx">cx</span><span class="p">,</span><span class="w"> </span><span class="nx">cy</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+</pre></div><p>The <code>scale()</code> method takes a scale factor (1.0 = original size).</p><h3 id="pdc-transformation-methods" class="anchor">PDC Transformation Methods</h3>
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>clone()</code></td>
+<td>Create a copy for transformation</td>
+</tr>
+<tr>
+<td><code>rotate(angle, pivotX, pivotY)</code></td>
+<td>Rotate by angle (radians) around pivot</td>
+</tr>
+<tr>
+<td><code>scale(factor)</code></td>
+<td>Scale uniformly by factor</td>
+</tr>
+</tbody></table>
+<p>Always call <code>clone()</code> before transforming to preserve the original.</p><h2 id="complete-example-animated-display" class="anchor">Complete Example: Animated Display</h2><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Starting animation demo"</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">white</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">gray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Background</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">white</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Diagonal lines</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawLine</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawLine</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Rounded rectangle frame</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">30</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawRoundRect</span><span class="p">(</span>
+<span class="w">            </span><span class="nx">margin</span><span class="p">,</span><span class="w"> </span><span class="nx">margin</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="nx">margin</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">),</span>
+<span class="w">            </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="nx">margin</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">),</span>
+<span class="w">            </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Rotating arc</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">cx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">cy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawCircle</span><span class="p">(</span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="nx">cx</span><span class="p">,</span><span class="w"> </span><span class="nx">cy</span><span class="p">,</span><span class="w"> </span><span class="mf">15</span><span class="p">,</span><span class="w"> </span><span class="nx">angle</span><span class="p">,</span><span class="w"> </span><span class="nx">angle</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">270</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">angle</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">360</span><span class="p">;</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+</pre></div><h2 id="screen-properties" class="anchor">Screen Properties</h2><p>The <code>render</code> object provides useful screen information:</p>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>render.width</code></td>
+<td>Screen width in pixels</td>
+</tr>
+<tr>
+<td><code>render.height</code></td>
+<td>Screen height in pixels</td>
+</tr>
+</tbody></table>
+<h2 id="performance-tips" class="anchor">Performance Tips</h2>
+<ol>
+<li><strong>Minimize draw area</strong>: Use <code>begin(x, y, w, h)</code> to only redraw changed
+regions</li>
+<li><strong>Batch drawing</strong>: Do all drawing between a single <code>begin()</code>/<code>end()</code> pair</li>
+<li><strong>Reuse colors</strong>: Create colors once and store them in variables</li>
+<li><strong>Preload fonts</strong>: Create font objects once at startup</li>
+<li><strong>Use PDC for complex graphics</strong>: Vector graphics scale better and use
+less memory than bitmaps</li>
+</ol>
+<h2 id="poco-vs-piu" class="anchor">Poco vs Piu</h2>
+<table><thead>
+<tr>
+<th>Feature</th>
+<th>Poco</th>
+<th>Piu</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Approach</td>
+<td>Procedural</td>
+<td>Declarative</td>
+</tr>
+<tr>
+<td>Control</td>
+<td>Low-level, pixel-perfect</td>
+<td>High-level, automatic layout</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Games, watchfaces, custom graphics</td>
+<td>Apps with standard UI patterns</td>
+</tr>
+<tr>
+<td>Learning curve</td>
+<td>Simpler concepts</td>
+<td>More abstraction to learn</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>More control over optimization</td>
+<td>Framework handles optimization</td>
+</tr>
+</tbody></table>
+<p>Use Poco when you need precise control over every pixel. Use Piu when you
+want automatic layout and a component-based architecture.</p><h2 id="examples" class="anchor">Examples</h2><p>The <a href="https://github.com/Moddable-OpenSource/pebble-examples" title="" class="">Pebble Examples</a>
+repository includes several Poco examples:</p>
+<ul>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-gbitmap" title="" class=""><code>hellopoco-gbitmap</code></a> - rendering Pebble GBitmap bitmaps</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-text" title="" class=""><code>hellopoco-text</code></a> - text rendering with Moddable SDK fonts</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pebbletext" title="" class=""><code>hellopoco-pebbletext</code></a> - text rendering with Pebble&#39;s built-in fonts</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pebblegraphics" title="" class=""><code>hellopoco-pebblegraphics</code></a> - lines, rounded rectangles, and circles</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc" title="" class=""><code>hellopoco-pdc</code></a> - rendering PDC (Draw Command) SVG images</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-rotate" title="" class=""><code>hellopoco-pdc-rotate</code></a> - rotating a PDC image</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-scale" title="" class=""><code>hellopoco-pdc-scale</code></a> - scaling a PDC image with easing</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-pdc-sequence" title="" class=""><code>hellopoco-pdc-sequence</code></a> - animated PDC image sequences</li>
+</ul>
+
+    </div>
+    
+    <a id="comments" class="anchor"></a>
+    <div id="disqus_thread" aria-live="polite" data-post-url="https://developer.repebble.com/guides/alloy/poco-guide/">
+      You need JavaScript enabled to read and post comments.
+    </div>
+    
+    
+  </div>
+  
+    <div class="col-m-4 hidden-s hidden-xs hidden-m">
+      <div class="gray-box gray-box--fixed gray-box--scrollspy">
+        
+
+
+  <h3>Overview</h3>
+  <ul class="toc">
+    
+      <li class="toc__item toc__item--level1"><a href="#getting-started">Getting Started</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#basic-drawing">Basic Drawing</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#colors">Colors</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#drawing-shapes">Drawing Shapes</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#rectangles">Rectangles</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#rounded-rectangles">Rounded Rectangles</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#lines">Lines</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#circles">Circles</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#text-rendering">Text Rendering</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#using-pebble-built-in-fonts">Using Pebble Built-in Fonts</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#centering-text">Centering Text</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#using-custom-fonts-moddable-sdk-fonts">Using Custom Fonts (Moddable SDK Fonts)</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#drawing-images">Drawing Images</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#bitmaps">Bitmaps</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#pdc-pebble-draw-command-images">PDC (Pebble Draw Command) Images</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#pdc-sequences-animations">PDC Sequences (Animations)</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#animation">Animation</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#rotating-pdc-images">Rotating PDC Images</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#scaling-pdc-images">Scaling PDC Images</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#pdc-transformation-methods">PDC Transformation Methods</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#complete-example-animated-display">Complete Example: Animated Display</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#screen-properties">Screen Properties</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#performance-tips">Performance Tips</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#poco-vs-piu">Poco vs Piu</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#examples">Examples</a></li>
+    
+  </ul>
+
+        
+        
+      </div>
+    </div>
+  
+</div>
+
+  </div>
+</div>
+
+
+    
+  </div>
+  <script type="text/javascript">
+    var searchPrimary = '';
+  </script>
+  
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/libs-ff95f116ad324def69395db037808d5a.js"></script>
+  
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/templates.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/app.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/search.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/quicksearch.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/disqus.js"></script>
+  
+</body>
+</html>

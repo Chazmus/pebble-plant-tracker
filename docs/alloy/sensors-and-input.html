@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<!--
+ Copyright 2025 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sensors and Input // Pebble Developers</title>
+  <meta property="og:site_name" content="Pebble Developers" />
+  <meta property="og:title" content="Sensors and Input" />
+  <meta property="og:url" content="https://developer.repebble.com/guides/alloy/sensors-and-input/" />
+  
+  <meta property="og:description" content="Access Pebble sensors and handle button input in Alloy apps.
+" />
+  <meta name="description" content="Access Pebble sensors and handle button input in Alloy apps.
+">
+  
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:image" content="https://developer.repebble.com/assets/images/menu/guides.png" />
+  
+  
+  <meta name="theme-color" content="#e5e327">
+  <link rel="canonical" href="https://developer.repebble.com/guides/alloy/sensors-and-input/">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+  <link href="https://developer.repebble.com/assets/favicon.png" rel="shortcut icon" type="image/vnd.microsoft.icon" id="favicon">
+  <link rel="stylesheet" type="text/css" href="https://developer.repebble.com/assets/css/main.css">
+  
+  <noscript>
+  <link rel="stylesheet" type="text/css" href="https://developer.repebble.com/assets/css/noscript.css">
+  </noscript>
+  
+  <script type="text/javascript" >
+    var _rollbarConfig = {
+      accessToken: '',
+      captureUncaught: true,
+      payload: {
+        environment: 'production'
+      }
+    };
+    !function(a,b){function c(b){this.shimId=++h,this.notifier=null,this.parentShim=b,this.logger=function(){},a.console&&void 0===a.console.shimId&&(this.logger=a.console.log)}function d(b,c,d){a._rollbarWrappedError&&(d[4]||(d[4]=a._rollbarWrappedError),d[5]||(d[5]=a._rollbarWrappedError._rollbarContext),a._rollbarWrappedError=null),b.uncaughtError.apply(b,d),c&&c.apply(a,d)}function e(b){var d=c;return g(function(){if(this.notifier)return this.notifier[b].apply(this.notifier,arguments);var c=this,e="scope"===b;e&&(c=new d(this));var f=Array.prototype.slice.call(arguments,0),g={shim:c,method:b,args:f,ts:new Date};return a._rollbarShimQueue.push(g),e?c:void 0})}function f(a,b){if(b.hasOwnProperty&&b.hasOwnProperty("addEventListener")){var c=b.addEventListener;b.addEventListener=function(b,d,e){c.call(this,b,a.wrap(d),e)};var d=b.removeEventListener;b.removeEventListener=function(a,b,c){d.call(this,a,b&&b._wrapped?b._wrapped:b,c)}}}function g(a,b){return b=b||this.logger,function(){try{return a.apply(this,arguments)}catch(c){b("Rollbar internal error:",c)}}}var h=0;c.init=function(a,b){var e=b.globalAlias||"Rollbar";if("object"==typeof a[e])return a[e];a._rollbarShimQueue=[],a._rollbarWrappedError=null,b=b||{};var h=new c;return g(function(){if(h.configure(b),b.captureUncaught){var c=a.onerror;a.onerror=function(){var a=Array.prototype.slice.call(arguments,0);d(h,c,a)};var g,i,j="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(g=0;g<j.length;++g)i=j[g],a[i]&&a[i].prototype&&f(h,a[i].prototype)}return a[e]=h,h},h.logger)()},c.prototype.loadFull=function(a,b,c,d,e){var f=g(function(){var a=b.createElement("script"),e=b.getElementsByTagName("script")[0];a.src=d.rollbarJsUrl,a.async=!c,a.onload=h,e.parentNode.insertBefore(a,e)},this.logger),h=g(function(){var b;if(void 0===a._rollbarPayloadQueue){var c,d,f,g;for(b=new Error("rollbar.js did not load");c=a._rollbarShimQueue.shift();)for(f=c.args,g=0;g<f.length;++g)if(d=f[g],"function"==typeof d){d(b);break}}"function"==typeof e&&e(b)},this.logger);g(function(){c?f():a.addEventListener?a.addEventListener("load",f,!1):a.attachEvent("onload",f)},this.logger)()},c.prototype.wrap=function(b,c){try{var d;if(d="function"==typeof c?c:function(){return c||{}},"function"!=typeof b)return b;if(b._isWrap)return b;if(!b._wrapped){b._wrapped=function(){try{return b.apply(this,arguments)}catch(c){throw c._rollbarContext=d(),c._rollbarContext._wrappedSource=b.toString(),a._rollbarWrappedError=c,c}},b._wrapped._isWrap=!0;for(var e in b)b.hasOwnProperty(e)&&(b._wrapped[e]=b[e])}return b._wrapped}catch(f){return b}};for(var i="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError".split(","),j=0;j<i.length;++j)c.prototype[i[j]]=e(i[j]);var k="//d37gvrvc0wt4s1.cloudfront.net/js/v1.1/rollbar.min.js";_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||k;var l=c.init(a,_rollbarConfig);l.loadFull(a,b,!1,_rollbarConfig)}(window,document);
+  </script>
+  <script type="text/javascript" async>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+</head>
+<body class="">
+  <div class="mmenu__wrapper">
+    <div class="sidebar__wrapper sidebar__wrapper--sectionmenu">
+  <div class="sidebar sidebar--narrow">
+    <a href="/" class="sidebar__header">
+      <span>pebble</span>
+    </a>
+    <ul class="mainmenu">
+      
+
+<li class="mainmenu__item mainmenu__item--getting-started"><a href="/tutorials/"><span>Tutorials</span></a></li>
+<li class="mainmenu__item mainmenu__item--sdk"><a href="/sdk/"><span>Get the SDK</span></a></li>
+<li class="mainmenu__item mainmenu__item--guides active"><a href="/guides/"><span>Guides</span></a></li>
+<li class="mainmenu__item mainmenu__item--docs"><a href="/docs/"><span>Documentation</span></a></li>
+<li class="mainmenu__item mainmenu__item--examples"><a href="/examples/"><span>Examples</span></a></li>
+<li class="mainmenu__item mainmenu__item--community"><a href="/community/"><span>Community</span></a></li>
+<li class="mainmenu__item mainmenu__item--blog"><a href="https://repebble.com/blog" target="_blank"><span>Blog</span></a></li>
+<li class="mainmenu__item mainmenu__item--more"><a href="/more/"><span>More</span></a></li>
+
+    </ul>
+    <div class="sidebar__legal">
+      <a href="https://repebble.com/privacy/" target="_blank">Privacy</a>
+      <br>
+      <a href="https://repebble.com/terms" target="_blank">Cookies</a>
+    </div>
+    <a href="https://developer.rePebble.com/dashboard" target="_blank" class="sidebar__footer">Publish</a>
+  </div>
+  <div class="section-menu section-menu--guides section-menu--light">
+    <div class="section-menu__header">
+      <h3><a href="/guides/">Guides</a></h3>
+    </div>
+    <ul>
+      <li class="section-menu__item">
+        <a href="/guides/toc/">Table of Contents</a>
+      </li>
+      
+        
+        
+        
+        <li class="section-menu__item open">
+          <a href="/guides/alloy/">
+            
+            Alloy
+          </a>
+          
+            <ul>
+            
+            
+            
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/getting-started/"><span>Getting Started with Alloy</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/piu-guide/"><span>Piu UI Framework</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/poco-guide/"><span>Poco Graphics</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem active">
+                  <a href="/guides/alloy/sensors-and-input/"><span>Sensors and Input</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/storage/"><span>Storage</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/networking/"><span>Networking</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/app-messages/"><span>App Messages</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/watchfaces/"><span>Watchfaces</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/animations/"><span>Animations</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/port-drawing/"><span>Port (Custom Drawing)</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/advanced-networking/"><span>Advanced Networking</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/ffi/"><span>Native Functions (FFI)</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/dictation/"><span>Dictation</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/wakeups/"><span>Wakeups</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/vibration/"><span>Vibration</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/device-info/"><span>Device Info and App Events</span></a>
+                </li>
+              
+            
+            
+            </ul>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/app-resources/">
+            
+            App Resources
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/best-practices/">
+            
+            Best Practices
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/communication/">
+            
+            Communication
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/debugging/">
+            
+            Debugging
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/design-and-interaction/">
+            
+            Design and Interaction
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/events-and-services/">
+            
+            Events and Services
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/graphics-and-animations/">
+            
+            Graphics and Animations
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/pebble-packages/">
+            
+            Pebble Packages
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/pebble-timeline/">
+            
+            Pebble Timeline
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/tools-and-resources/">
+            
+            Tools and Resources
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/user-interfaces/">
+            
+            User Interfaces
+          </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+</div><!-- sidebar__wrapper -->
+<div class="content content--section-menu">
+  
+
+<div class="search">
+  <a  href="javascript:void(0);" class="mobile-nav__hamburger js-mobile-nav-toggle"><i class="fa fa-reorder"></i></a>
+  <i class="fa fa-lg fa-search search__icon"></i><input type="search" id="quicksearch" placeholder="Search Developer Site">
+</div>
+<div class="quicksearch" style="display: none;" id="quicksearch__results"></div>
+<div id="search__blackout" style="display: none;"></div>
+
+  <div class="container">
+    
+
+
+<div class="visible-m visible-s visible-xs row">
+  <div class="col-xs-12">
+    <div class="form__group">
+      <div class="select-style no-label">
+        <select class="js-toc-select">
+          
+            <option value="button-input">Button Input</option>
+          
+            <option value="button-types">- Button Types</option>
+          
+            <option value="button-events">- Button Events</option>
+          
+            <option value="accelerometer">Accelerometer</option>
+          
+            <option value="accelerometer-sample-data">- Accelerometer Sample Data</option>
+          
+            <option value="accelerometer-events">- Accelerometer Events</option>
+          
+            <option value="configuration-options">- Configuration Options</option>
+          
+            <option value="compass">Compass</option>
+          
+            <option value="compass-sample-data">- Compass Sample Data</option>
+          
+            <option value="location">Location</option>
+          
+            <option value="location-sample-data">- Location Sample Data</option>
+          
+            <option value="configuration-options">- Configuration Options</option>
+          
+            <option value="pkjs-setup-for-location">- PKJS Setup for Location</option>
+          
+            <option value="touch">Touch</option>
+          
+            <option value="touch-sample-data">- Touch Sample Data</option>
+          
+            <option value="tracking-touch-state">- Tracking Touch State</option>
+          
+            <option value="battery-status">Battery Status</option>
+          
+            <option value="battery-sample-data">- Battery Sample Data</option>
+          
+            <option value="connection-status">Connection Status</option>
+          
+            <option value="complete-example-sensor-dashboard">Complete Example: Sensor Dashboard</option>
+          
+            <option value="testing-in-the-emulator">Testing in the Emulator</option>
+          
+            <option value="battery">- Battery</option>
+          
+            <option value="accelerometer">- Accelerometer</option>
+          
+            <option value="best-practices">Best Practices</option>
+          
+            <option value="examples">Examples</option>
+          
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-l-8 col-m-12">
+    <h1 class="pagetitle">Sensors and Input</h1>
+    
+    <div class="markdown markdown--staff">
+    <p>Alloy provides access to Pebble hardware sensors and button input through
+simple JavaScript APIs. Sensors follow the ECMA-419 Sensor Class Pattern, while
+the Button class is a Pebble-specific API.</p>
+<blockquote>
+<p><strong>Note</strong>: All code in this guide runs on the watch in <code>src/embeddedjs/main.js</code>.</p></blockquote>
+<h2 id="button-input" class="anchor">Button Input</h2><p>Handle button presses using the <code>Button</code> class:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Button</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"pebble/button"</span><span class="p">;</span>
+
+<span class="ow">new</span><span class="w"> </span><span class="nx">Button</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">types</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"select"</span><span class="p">,</span><span class="w"> </span><span class="s2">"up"</span><span class="p">,</span><span class="w"> </span><span class="s2">"down"</span><span class="p">,</span><span class="w"> </span><span class="s2">"back"</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">onPush</span><span class="p">(</span><span class="nx">down</span><span class="p">,</span><span class="w"> </span><span class="nx">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="nx">down</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">"press "</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">"release "</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">type</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<blockquote>
+<p><strong>Note</strong>: If your app includes <code>&quot;back&quot;</code> in the <code>types</code> array, the back button
+no longer exits the app automatically - press and hold back to exit instead.
+If you don&#39;t include <code>&quot;back&quot;</code>, pressing back exits as usual.</p></blockquote>
+<h3 id="button-types" class="anchor">Button Types</h3>
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>&quot;select&quot;</code></td>
+<td>Middle button (center right)</td>
+</tr>
+<tr>
+<td><code>&quot;up&quot;</code></td>
+<td>Top button</td>
+</tr>
+<tr>
+<td><code>&quot;down&quot;</code></td>
+<td>Bottom button</td>
+</tr>
+<tr>
+<td><code>&quot;back&quot;</code></td>
+<td>Back button (left side)</td>
+</tr>
+</tbody></table>
+<h3 id="button-events" class="anchor">Button Events</h3><p>The <code>onPush</code> callback receives two parameters:</p>
+<ul>
+<li><code>down</code> - <code>1</code> when pressed, <code>0</code> when released (use it as a truthy/falsy value)</li>
+<li><code>type</code> - String: which button was pressed</li>
+</ul>
+<h2 id="accelerometer" class="anchor">Accelerometer</h2><p>Read motion data from the accelerometer:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Accelerometer</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"embedded:sensor/Accelerometer"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">accel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Accelerometer</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">onSample</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">sample</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"accel "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">sample</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">", "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">sample</span><span class="p">.</span><span class="nx">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">", "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">sample</span><span class="p">.</span><span class="nx">z</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">onTap</span><span class="p">(</span><span class="nx">direction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"single tap "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">direction</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">onDoubleTap</span><span class="p">(</span><span class="nx">direction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"double tap "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">direction</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Configure sample rate (Hz)</span>
+<span class="nx">accel</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span><span class="w"> </span><span class="nx">hz</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">});</span>
+</pre></div><h3 id="accelerometer-sample-data" class="anchor">Accelerometer Sample Data</h3><p>The <code>sample()</code> method returns an object with:</p>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>x</code></td>
+<td>Acceleration on X axis</td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>Acceleration on Y axis</td>
+</tr>
+<tr>
+<td><code>z</code></td>
+<td>Acceleration on Z axis</td>
+</tr>
+</tbody></table>
+<h3 id="accelerometer-events" class="anchor">Accelerometer Events</h3>
+<table><thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>onSample()</code></td>
+<td>Called when new sensor data is available</td>
+</tr>
+<tr>
+<td><code>onTap(direction)</code></td>
+<td>Called on single tap gesture</td>
+</tr>
+<tr>
+<td><code>onDoubleTap(direction)</code></td>
+<td>Called on double tap gesture</td>
+</tr>
+</tbody></table>
+<h3 id="configuration-options" class="anchor">Configuration Options</h3><div class="highlight"><pre><span></span><span class="nx">accel</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">hz</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w">  </span><span class="c1">// Sample rate in Hz (samples per second)</span>
+<span class="p">});</span>
+</pre></div><h2 id="compass" class="anchor">Compass</h2><p>Read the magnetic heading from the compass:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Compass</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"embedded:sensor/Compass"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">compass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Compass</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">onSample</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">sample</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"heading "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">sample</span><span class="p">.</span><span class="nx">heading</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div><h3 id="compass-sample-data" class="anchor">Compass Sample Data</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>heading</code></td>
+<td>Magnetic heading in degrees (0-360)</td>
+</tr>
+</tbody></table>
+<h2 id="location" class="anchor">Location</h2><p>Get the user&#39;s GPS location via the phone:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Location</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"embedded:sensor/Location"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Location</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">onSample</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">sample</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Location: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">sample</span><span class="p">.</span><span class="nx">latitude</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">", "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">sample</span><span class="p">.</span><span class="nx">longitude</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div><p>The Location sensor follows the same ECMA-419 pattern as other sensors but has
+a few differences:</p>
+<ul>
+<li><strong>One-shot</strong> - call <code>this.close()</code> after receiving the sample. Location is a
+request, not a continuous monitor.</li>
+<li><strong>Requires the phone</strong> - location data comes from the phone&#39;s GPS via the
+<code>@moddable/pebbleproxy</code> package.</li>
+<li><strong>Requires capability</strong> - add <code>&quot;location&quot;</code> to the <code>capabilities</code> array in
+<code>package.json</code>.</li>
+</ul>
+<h3 id="location-sample-data" class="anchor">Location Sample Data</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>latitude</code></td>
+<td>Number</td>
+<td>Latitude in decimal degrees</td>
+</tr>
+<tr>
+<td><code>longitude</code></td>
+<td>Number</td>
+<td>Longitude in decimal degrees</td>
+</tr>
+</tbody></table>
+<h3 id="configuration-options" class="anchor">Configuration Options</h3><p>You can optionally configure the location request immediately after creating the
+instance:</p><div class="highlight"><pre><span></span><span class="nx">location</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">enableHighAccuracy</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">timeout</span><span class="o">:</span><span class="w"> </span><span class="mf">5000</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">maximumAge</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span>
+<span class="p">});</span>
+</pre></div>
+<table><thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>enableHighAccuracy</code></td>
+<td>Request high-accuracy GPS (uses more battery)</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td>Maximum time in ms to wait for a location</td>
+</tr>
+<tr>
+<td><code>maximumAge</code></td>
+<td>Accept a cached location up to this many ms old</td>
+</tr>
+</tbody></table>
+<h3 id="pkjs-setup-for-location" class="anchor">PKJS Setup for Location</h3><p>The Location sensor requires the <code>@moddable/pebbleproxy</code> package. Set up
+<code>src/pkjs/index.js</code>:</p><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">moddableProxy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">"@moddable/pebbleproxy"</span><span class="p">);</span>
+<span class="nx">Pebble</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'ready'</span><span class="p">,</span><span class="w"> </span><span class="nx">moddableProxy</span><span class="p">.</span><span class="nx">readyReceived</span><span class="p">);</span>
+<span class="nx">Pebble</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'appmessage'</span><span class="p">,</span><span class="w"> </span><span class="nx">moddableProxy</span><span class="p">.</span><span class="nx">appMessageReceived</span><span class="p">);</span>
+</pre></div><p>No custom location code is needed in PKJS - the proxy handles GPS lookup
+automatically.</p><h2 id="touch" class="anchor">Touch</h2><p>On platforms with a touchscreen (Emery, Gabbro), read raw touch points using
+the <code>Touch</code> sensor exposed as <code>device.sensor.Touch</code>:</p><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">touch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">device</span><span class="p">.</span><span class="nx">sensor</span><span class="p">.</span><span class="nx">Touch</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">onSample</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">sample</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">points</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">points</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"lift-off"</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">points</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"touch "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">", "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</pre></div><h3 id="touch-sample-data" class="anchor">Touch Sample Data</h3><p><code>sample()</code> returns either a falsy value (no new data since the last call) or
+an array of current contact points. An empty array signals that the last
+finger has lifted off the screen.</p>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>x</code></td>
+<td>X coordinate in screen pixels</td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>Y coordinate in screen pixels</td>
+</tr>
+</tbody></table>
+<h3 id="tracking-touch-state" class="anchor">Tracking Touch State</h3><p><code>onSample</code> only tells you the current set of contact points, not when a
+touch started or ended. Track that state yourself to get began/moved/ended
+semantics:</p><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">touch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">device</span><span class="p">.</span><span class="nx">sensor</span><span class="p">.</span><span class="nx">Touch</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">onSample</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">sample</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">points</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">points</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">last</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"ended at "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">last</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">", "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">last</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">undefined</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">points</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">last</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">last</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">last</span><span class="p">.</span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">y</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"moved to "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">", "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="p">};</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"began at "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">", "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">touch</span><span class="p">.</span><span class="nx">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Array</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+</pre></div>
+<blockquote>
+<p><strong>Note</strong>: For Piu apps, you generally don&#39;t need this sensor directly -
+Piu delivers <code>onTouchBegan</code>/<code>onTouchEnded</code> events to container Behaviors
+when <code>touchCount</code> is set on the Application. See the
+<a href="/guides/alloy/piu-guide/" title="" class="">Piu guide</a> for details.</p></blockquote>
+<h2 id="battery-status" class="anchor">Battery Status</h2><p>Monitor battery level and charging state:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Battery</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"embedded:sensor/Battery"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">battery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Battery</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">onSample</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">sample</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"battery "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">sample</span><span class="p">.</span><span class="nx">percent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"%, charging "</span><span class="w"> </span><span class="o">+</span>
+<span class="w">              </span><span class="nx">sample</span><span class="p">.</span><span class="nx">charging</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">", plugged "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">sample</span><span class="p">.</span><span class="nx">plugged</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Get current state immediately</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">battery</span><span class="p">.</span><span class="nx">sample</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"battery "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">status</span><span class="p">.</span><span class="nx">percent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"%"</span><span class="p">);</span>
+</pre></div><h3 id="battery-sample-data" class="anchor">Battery Sample Data</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>percent</code></td>
+<td>Number</td>
+<td>Battery level (0-100)</td>
+</tr>
+<tr>
+<td><code>charging</code></td>
+<td>Boolean</td>
+<td>Whether battery is charging</td>
+</tr>
+<tr>
+<td><code>plugged</code></td>
+<td>Boolean</td>
+<td>Whether charger is connected</td>
+</tr>
+</tbody></table>
+<h2 id="connection-status" class="anchor">Connection Status</h2><p>Monitor connection to the phone:</p><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">logConnected</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"App connected: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">watch</span><span class="p">.</span><span class="nx">connected</span><span class="p">.</span><span class="nx">app</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"PebbleKitJS connected: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">watch</span><span class="p">.</span><span class="nx">connected</span><span class="p">.</span><span class="nx">pebblekit</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">watch</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'connected'</span><span class="p">,</span><span class="w"> </span><span class="nx">logConnected</span><span class="p">);</span>
+<span class="nx">logConnected</span><span class="p">();</span>
+</pre></div><p>The <code>watch.connected</code> object has two properties:</p>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>app</code></td>
+<td>Whether the Pebble app is connected</td>
+</tr>
+<tr>
+<td><code>pebblekit</code></td>
+<td>Whether PebbleKit JS is ready for messaging</td>
+</tr>
+</tbody></table>
+<h2 id="complete-example-sensor-dashboard" class="anchor">Complete Example: Sensor Dashboard</h2><p>Here&#39;s a complete example that displays sensor data:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">Button</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"pebble/button"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">Accelerometer</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"embedded:sensor/Accelerometer"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">Battery</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"embedded:sensor/Battery"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">font</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">Font</span><span class="p">(</span><span class="s2">"Gothic-Regular"</span><span class="p">,</span><span class="w"> </span><span class="mf">18</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">white</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">accelData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">batteryPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">lastButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">;</span>
+
+<span class="c1">// Setup accelerometer</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">accel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Accelerometer</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">onSample</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">accelData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">sample</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">draw</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">accel</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span><span class="w"> </span><span class="nx">hz</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="p">});</span>
+
+<span class="c1">// Setup battery monitor</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">battery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Battery</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">onSample</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">batteryPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">sample</span><span class="p">().</span><span class="nx">percent</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">draw</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">batteryPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">battery</span><span class="p">.</span><span class="nx">sample</span><span class="p">().</span><span class="nx">percent</span><span class="p">;</span>
+
+<span class="c1">// Setup button handler</span>
+<span class="ow">new</span><span class="w"> </span><span class="nx">Button</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">types</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"select"</span><span class="p">,</span><span class="w"> </span><span class="s2">"up"</span><span class="p">,</span><span class="w"> </span><span class="s2">"down"</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">onPush</span><span class="p">(</span><span class="nx">down</span><span class="p">,</span><span class="w"> </span><span class="nx">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">down</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">lastButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">type</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">draw</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">white</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="s2">"Battery: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">batteryPercent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"%"</span><span class="p">,</span><span class="w"> </span><span class="nx">font</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="s2">"Button: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">lastButton</span><span class="p">,</span><span class="w"> </span><span class="nx">font</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">35</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="s2">"Accel X: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">accelData</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">2</span><span class="p">),</span><span class="w"> </span><span class="nx">font</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">60</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="s2">"Accel Y: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">accelData</span><span class="p">.</span><span class="nx">y</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">2</span><span class="p">),</span><span class="w"> </span><span class="nx">font</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">85</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="s2">"Accel Z: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">accelData</span><span class="p">.</span><span class="nx">z</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mf">2</span><span class="p">),</span><span class="w"> </span><span class="nx">font</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">110</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">draw</span><span class="p">();</span>
+</pre></div><h2 id="testing-in-the-emulator" class="anchor">Testing in the Emulator</h2><p>When using the Pebble emulator, you can simulate sensor input:</p><h3 id="battery" class="anchor">Battery</h3><div class="highlight"><pre><span class="prompt">$ </span>pebble emu-battery --percent 20 --charging --qemu localhost:12344
+</pre></div><h3 id="accelerometer" class="anchor">Accelerometer</h3><div class="highlight"><pre><span class="prompt">$ </span>pebble emu-accel tilt-left --qemu localhost:12344
+</pre></div><h2 id="best-practices" class="anchor">Best Practices</h2>
+<ol>
+<li><p><strong>Clean up resources</strong>: Sensors continue to consume power while active.
+Stop them when not needed.</p></li>
+<li><p><strong>Appropriate sample rates</strong>: Higher accelerometer sample rates use more
+power. Use the lowest rate that meets your needs.</p></li>
+<li><p><strong>Handle disconnection gracefully</strong>: Check connection status before
+attempting network operations.</p></li>
+</ol>
+<h2 id="examples" class="anchor">Examples</h2><p>The <a href="https://github.com/Moddable-OpenSource/pebble-examples" title="" class="">Pebble Examples</a>
+repository includes sensor and input examples:</p>
+<ul>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobutton" title="" class=""><code>hellobutton</code></a> - subscribing to button press and release events</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/helloaccelerometer" title="" class=""><code>helloaccelerometer</code></a> - reading accelerometer data and detecting taps</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellobattery" title="" class=""><code>hellobattery</code></a> - monitoring battery level and charging state</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellolocation" title="" class=""><code>hellolocation</code></a> - getting GPS location from the phone</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellopoco-drag" title="" class=""><code>hellopoco-drag</code></a> - draggable UI built on the <code>device.sensor.Touch</code> driver</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/gravity" title="" class=""><code>piu/apps/gravity</code></a> - visualizes accelerometer readings with an animated display</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/apps/compass" title="" class=""><code>piu/apps/compass</code></a> - visualizes compass readings with a rotating compass rose</li>
+</ul>
+
+    </div>
+    
+    <a id="comments" class="anchor"></a>
+    <div id="disqus_thread" aria-live="polite" data-post-url="https://developer.repebble.com/guides/alloy/sensors-and-input/">
+      You need JavaScript enabled to read and post comments.
+    </div>
+    
+    
+  </div>
+  
+    <div class="col-m-4 hidden-s hidden-xs hidden-m">
+      <div class="gray-box gray-box--fixed gray-box--scrollspy">
+        
+
+
+  <h3>Overview</h3>
+  <ul class="toc">
+    
+      <li class="toc__item toc__item--level1"><a href="#button-input">Button Input</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#button-types">Button Types</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#button-events">Button Events</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#accelerometer">Accelerometer</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#accelerometer-sample-data">Accelerometer Sample Data</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#accelerometer-events">Accelerometer Events</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#configuration-options">Configuration Options</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#compass">Compass</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#compass-sample-data">Compass Sample Data</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#location">Location</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#location-sample-data">Location Sample Data</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#configuration-options">Configuration Options</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#pkjs-setup-for-location">PKJS Setup for Location</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#touch">Touch</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#touch-sample-data">Touch Sample Data</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#tracking-touch-state">Tracking Touch State</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#battery-status">Battery Status</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#battery-sample-data">Battery Sample Data</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#connection-status">Connection Status</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#complete-example-sensor-dashboard">Complete Example: Sensor Dashboard</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#testing-in-the-emulator">Testing in the Emulator</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#battery">Battery</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#accelerometer">Accelerometer</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#best-practices">Best Practices</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#examples">Examples</a></li>
+    
+  </ul>
+
+        
+        
+      </div>
+    </div>
+  
+</div>
+
+  </div>
+</div>
+
+
+    
+  </div>
+  <script type="text/javascript">
+    var searchPrimary = '';
+  </script>
+  
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/libs-ff95f116ad324def69395db037808d5a.js"></script>
+  
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/templates.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/app.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/search.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/quicksearch.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/disqus.js"></script>
+  
+</body>
+</html>

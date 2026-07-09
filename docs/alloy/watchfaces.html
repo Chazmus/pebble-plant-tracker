@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<!--
+ Copyright 2025 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Watchfaces // Pebble Developers</title>
+  <meta property="og:site_name" content="Pebble Developers" />
+  <meta property="og:title" content="Watchfaces" />
+  <meta property="og:url" content="https://developer.repebble.com/guides/alloy/watchfaces/" />
+  
+  <meta property="og:description" content="Build custom watchfaces with Alloy.
+" />
+  <meta name="description" content="Build custom watchfaces with Alloy.
+">
+  
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:image" content="https://developer.repebble.com/assets/images/menu/guides.png" />
+  
+  
+  <meta name="theme-color" content="#e5e327">
+  <link rel="canonical" href="https://developer.repebble.com/guides/alloy/watchfaces/">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+  <link href="https://developer.repebble.com/assets/favicon.png" rel="shortcut icon" type="image/vnd.microsoft.icon" id="favicon">
+  <link rel="stylesheet" type="text/css" href="https://developer.repebble.com/assets/css/main.css">
+  
+  <noscript>
+  <link rel="stylesheet" type="text/css" href="https://developer.repebble.com/assets/css/noscript.css">
+  </noscript>
+  
+  <script type="text/javascript" >
+    var _rollbarConfig = {
+      accessToken: '',
+      captureUncaught: true,
+      payload: {
+        environment: 'production'
+      }
+    };
+    !function(a,b){function c(b){this.shimId=++h,this.notifier=null,this.parentShim=b,this.logger=function(){},a.console&&void 0===a.console.shimId&&(this.logger=a.console.log)}function d(b,c,d){a._rollbarWrappedError&&(d[4]||(d[4]=a._rollbarWrappedError),d[5]||(d[5]=a._rollbarWrappedError._rollbarContext),a._rollbarWrappedError=null),b.uncaughtError.apply(b,d),c&&c.apply(a,d)}function e(b){var d=c;return g(function(){if(this.notifier)return this.notifier[b].apply(this.notifier,arguments);var c=this,e="scope"===b;e&&(c=new d(this));var f=Array.prototype.slice.call(arguments,0),g={shim:c,method:b,args:f,ts:new Date};return a._rollbarShimQueue.push(g),e?c:void 0})}function f(a,b){if(b.hasOwnProperty&&b.hasOwnProperty("addEventListener")){var c=b.addEventListener;b.addEventListener=function(b,d,e){c.call(this,b,a.wrap(d),e)};var d=b.removeEventListener;b.removeEventListener=function(a,b,c){d.call(this,a,b&&b._wrapped?b._wrapped:b,c)}}}function g(a,b){return b=b||this.logger,function(){try{return a.apply(this,arguments)}catch(c){b("Rollbar internal error:",c)}}}var h=0;c.init=function(a,b){var e=b.globalAlias||"Rollbar";if("object"==typeof a[e])return a[e];a._rollbarShimQueue=[],a._rollbarWrappedError=null,b=b||{};var h=new c;return g(function(){if(h.configure(b),b.captureUncaught){var c=a.onerror;a.onerror=function(){var a=Array.prototype.slice.call(arguments,0);d(h,c,a)};var g,i,j="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(g=0;g<j.length;++g)i=j[g],a[i]&&a[i].prototype&&f(h,a[i].prototype)}return a[e]=h,h},h.logger)()},c.prototype.loadFull=function(a,b,c,d,e){var f=g(function(){var a=b.createElement("script"),e=b.getElementsByTagName("script")[0];a.src=d.rollbarJsUrl,a.async=!c,a.onload=h,e.parentNode.insertBefore(a,e)},this.logger),h=g(function(){var b;if(void 0===a._rollbarPayloadQueue){var c,d,f,g;for(b=new Error("rollbar.js did not load");c=a._rollbarShimQueue.shift();)for(f=c.args,g=0;g<f.length;++g)if(d=f[g],"function"==typeof d){d(b);break}}"function"==typeof e&&e(b)},this.logger);g(function(){c?f():a.addEventListener?a.addEventListener("load",f,!1):a.attachEvent("onload",f)},this.logger)()},c.prototype.wrap=function(b,c){try{var d;if(d="function"==typeof c?c:function(){return c||{}},"function"!=typeof b)return b;if(b._isWrap)return b;if(!b._wrapped){b._wrapped=function(){try{return b.apply(this,arguments)}catch(c){throw c._rollbarContext=d(),c._rollbarContext._wrappedSource=b.toString(),a._rollbarWrappedError=c,c}},b._wrapped._isWrap=!0;for(var e in b)b.hasOwnProperty(e)&&(b._wrapped[e]=b[e])}return b._wrapped}catch(f){return b}};for(var i="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError".split(","),j=0;j<i.length;++j)c.prototype[i[j]]=e(i[j]);var k="//d37gvrvc0wt4s1.cloudfront.net/js/v1.1/rollbar.min.js";_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||k;var l=c.init(a,_rollbarConfig);l.loadFull(a,b,!1,_rollbarConfig)}(window,document);
+  </script>
+  <script type="text/javascript" async>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+</head>
+<body class="">
+  <div class="mmenu__wrapper">
+    <div class="sidebar__wrapper sidebar__wrapper--sectionmenu">
+  <div class="sidebar sidebar--narrow">
+    <a href="/" class="sidebar__header">
+      <span>pebble</span>
+    </a>
+    <ul class="mainmenu">
+      
+
+<li class="mainmenu__item mainmenu__item--getting-started"><a href="/tutorials/"><span>Tutorials</span></a></li>
+<li class="mainmenu__item mainmenu__item--sdk"><a href="/sdk/"><span>Get the SDK</span></a></li>
+<li class="mainmenu__item mainmenu__item--guides active"><a href="/guides/"><span>Guides</span></a></li>
+<li class="mainmenu__item mainmenu__item--docs"><a href="/docs/"><span>Documentation</span></a></li>
+<li class="mainmenu__item mainmenu__item--examples"><a href="/examples/"><span>Examples</span></a></li>
+<li class="mainmenu__item mainmenu__item--community"><a href="/community/"><span>Community</span></a></li>
+<li class="mainmenu__item mainmenu__item--blog"><a href="https://repebble.com/blog" target="_blank"><span>Blog</span></a></li>
+<li class="mainmenu__item mainmenu__item--more"><a href="/more/"><span>More</span></a></li>
+
+    </ul>
+    <div class="sidebar__legal">
+      <a href="https://repebble.com/privacy/" target="_blank">Privacy</a>
+      <br>
+      <a href="https://repebble.com/terms" target="_blank">Cookies</a>
+    </div>
+    <a href="https://developer.rePebble.com/dashboard" target="_blank" class="sidebar__footer">Publish</a>
+  </div>
+  <div class="section-menu section-menu--guides section-menu--light">
+    <div class="section-menu__header">
+      <h3><a href="/guides/">Guides</a></h3>
+    </div>
+    <ul>
+      <li class="section-menu__item">
+        <a href="/guides/toc/">Table of Contents</a>
+      </li>
+      
+        
+        
+        
+        <li class="section-menu__item open">
+          <a href="/guides/alloy/">
+            
+            Alloy
+          </a>
+          
+            <ul>
+            
+            
+            
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/getting-started/"><span>Getting Started with Alloy</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/piu-guide/"><span>Piu UI Framework</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/poco-guide/"><span>Poco Graphics</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/sensors-and-input/"><span>Sensors and Input</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/storage/"><span>Storage</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/networking/"><span>Networking</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/app-messages/"><span>App Messages</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem active">
+                  <a href="/guides/alloy/watchfaces/"><span>Watchfaces</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/animations/"><span>Animations</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/port-drawing/"><span>Port (Custom Drawing)</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/advanced-networking/"><span>Advanced Networking</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/ffi/"><span>Native Functions (FFI)</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/dictation/"><span>Dictation</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/wakeups/"><span>Wakeups</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/vibration/"><span>Vibration</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/device-info/"><span>Device Info and App Events</span></a>
+                </li>
+              
+            
+            
+            </ul>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/app-resources/">
+            
+            App Resources
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/best-practices/">
+            
+            Best Practices
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/communication/">
+            
+            Communication
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/debugging/">
+            
+            Debugging
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/design-and-interaction/">
+            
+            Design and Interaction
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/events-and-services/">
+            
+            Events and Services
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/graphics-and-animations/">
+            
+            Graphics and Animations
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/pebble-packages/">
+            
+            Pebble Packages
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/pebble-timeline/">
+            
+            Pebble Timeline
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/tools-and-resources/">
+            
+            Tools and Resources
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/user-interfaces/">
+            
+            User Interfaces
+          </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+</div><!-- sidebar__wrapper -->
+<div class="content content--section-menu">
+  
+
+<div class="search">
+  <a  href="javascript:void(0);" class="mobile-nav__hamburger js-mobile-nav-toggle"><i class="fa fa-reorder"></i></a>
+  <i class="fa fa-lg fa-search search__icon"></i><input type="search" id="quicksearch" placeholder="Search Developer Site">
+</div>
+<div class="quicksearch" style="display: none;" id="quicksearch__results"></div>
+<div id="search__blackout" style="display: none;"></div>
+
+  <div class="container">
+    
+
+
+<div class="visible-m visible-s visible-xs row">
+  <div class="col-xs-12">
+    <div class="form__group">
+      <div class="select-style no-label">
+        <select class="js-toc-select">
+          
+            <option value="configuration">Configuration</option>
+          
+            <option value="time-events">Time Events</option>
+          
+            <option value="basic-watchface">Basic Watchface</option>
+          
+            <option value="getting-time-components">Getting Time Components</option>
+          
+            <option value="formatting-time">- Formatting Time</option>
+          
+            <option value="watchface-with-date">Watchface with Date</option>
+          
+            <option value="analog-watchface-concepts">Analog Watchface Concepts</option>
+          
+            <option value="drawing-clock-hands">- Drawing Clock Hands</option>
+          
+            <option value="using-piu-for-watchfaces">Using Piu for Watchfaces</option>
+          
+            <option value="battery-and-connection-status">Battery and Connection Status</option>
+          
+            <option value="performance-tips">Performance Tips</option>
+          
+            <option value="complete-example-minimal-watchface">Complete Example: Minimal Watchface</option>
+          
+            <option value="examples">Examples</option>
+          
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-l-8 col-m-12">
+    <h1 class="pagetitle">Watchfaces</h1>
+    
+    <div class="markdown markdown--staff">
+    <p>Watchfaces are a special type of Pebble app that displays the current time.
+Alloy makes it easy to create custom watchfaces using either Poco or Piu.</p>
+<blockquote>
+<p><strong>Note</strong>: All code in this guide runs on the watch in <code>src/embeddedjs/main.js</code>
+unless otherwise noted.</p></blockquote>
+<h2 id="configuration" class="anchor">Configuration</h2><p>To create a watchface, set <code>watchface</code> to <code>true</code> in your <code>package.json</code>:</p><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"pebble"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"watchapp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"watchface"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div><h2 id="time-events" class="anchor">Time Events</h2><p>Subscribe to time change events using the <code>watch</code> global. The event callback
+receives a <code>Date</code> instance for the current time:</p><div class="highlight"><pre><span></span><span class="c1">// Called every second</span>
+<span class="nx">watch</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"secondchange"</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">updateDisplay</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">date</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Called every minute</span>
+<span class="nx">watch</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"minutechange"</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">updateDisplay</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">date</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div><p>Use <code>secondchange</code> for watchfaces that show seconds, and <code>minutechange</code> for
+those that only show hours and minutes (saves battery). The callback is also
+invoked immediately when the event listener is installed, so there is no need
+to call your display function separately at startup.</p><h2 id="basic-watchface" class="anchor">Basic Watchface</h2><p>Here&#39;s a simple digital watchface:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">font</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">Font</span><span class="p">(</span><span class="s2">"Bitham-Black"</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">white</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">);</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">draw</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">white</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get current time as HH:MM:SS</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">toTimeString</span><span class="p">().</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">8</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Center the text</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">getTextWidth</span><span class="p">(</span><span class="nx">time</span><span class="p">,</span><span class="w"> </span><span class="nx">font</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">font</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="nx">time</span><span class="p">,</span><span class="w"> </span><span class="nx">font</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">watch</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"secondchange"</span><span class="p">,</span><span class="w"> </span><span class="nx">draw</span><span class="p">);</span>
+</pre></div><h2 id="getting-time-components" class="anchor">Getting Time Components</h2><p>Use the <code>Date</code> provided by the event to get individual time components:</p><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">getTimeComponents</span><span class="p">(</span><span class="nx">date</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">hours</span><span class="o">:</span><span class="w"> </span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">(),</span><span class="w">      </span><span class="c1">// 0-23</span>
+<span class="w">        </span><span class="nx">minutes</span><span class="o">:</span><span class="w"> </span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">(),</span><span class="w">  </span><span class="c1">// 0-59</span>
+<span class="w">        </span><span class="nx">seconds</span><span class="o">:</span><span class="w"> </span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">(),</span><span class="w">  </span><span class="c1">// 0-59</span>
+<span class="w">        </span><span class="nx">day</span><span class="o">:</span><span class="w"> </span><span class="nx">date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">(),</span><span class="w">         </span><span class="c1">// 1-31</span>
+<span class="w">        </span><span class="nx">month</span><span class="o">:</span><span class="w"> </span><span class="nx">date</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">(),</span><span class="w">      </span><span class="c1">// 0-11</span>
+<span class="w">        </span><span class="nx">year</span><span class="o">:</span><span class="w"> </span><span class="nx">date</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">(),</span><span class="w">    </span><span class="c1">// e.g., 2025</span>
+<span class="w">        </span><span class="nx">dayOfWeek</span><span class="o">:</span><span class="w"> </span><span class="nx">date</span><span class="p">.</span><span class="nx">getDay</span><span class="p">()</span><span class="w">     </span><span class="c1">// 0-6 (Sunday=0)</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div><h3 id="formatting-time" class="anchor">Formatting Time</h3><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">formatTime</span><span class="p">(</span><span class="nx">hours</span><span class="p">,</span><span class="w"> </span><span class="nx">minutes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">hours</span><span class="p">).</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"0"</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">minutes</span><span class="p">).</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"0"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">h</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">m</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">format12Hour</span><span class="p">(</span><span class="nx">hours</span><span class="p">,</span><span class="w"> </span><span class="nx">minutes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">hours</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">12</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">"PM"</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">"AM"</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">hours</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">12</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mf">12</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">minutes</span><span class="p">).</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"0"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">h</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">m</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">period</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div><h2 id="watchface-with-date" class="anchor">Watchface with Date</h2><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">timeFont</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">Font</span><span class="p">(</span><span class="s2">"Leco-Regular"</span><span class="p">,</span><span class="w"> </span><span class="mf">42</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">dateFont</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">Font</span><span class="p">(</span><span class="s2">"Gothic-Regular"</span><span class="p">,</span><span class="w"> </span><span class="mf">18</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">white</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">DAYS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"Sun"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Mon"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Tue"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Wed"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Thu"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Fri"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Sat"</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">MONTHS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"Jan"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Feb"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Mar"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Apr"</span><span class="p">,</span><span class="w"> </span><span class="s2">"May"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Jun"</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">"Jul"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Aug"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Sep"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Oct"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Nov"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Dec"</span><span class="p">];</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">draw</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">date</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">white</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Time (HH:MM)</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">hours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()).</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"0"</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">minutes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()).</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"0"</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">timeStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">hours</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">minutes</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">getTextWidth</span><span class="p">(</span><span class="nx">timeStr</span><span class="p">,</span><span class="w"> </span><span class="nx">timeFont</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="nx">timeStr</span><span class="p">,</span><span class="w"> </span><span class="nx">timeFont</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">timeFont</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">15</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Date (e.g., "Mon, Jan 15")</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">dayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">DAYS</span><span class="p">[</span><span class="nx">now</span><span class="p">.</span><span class="nx">getDay</span><span class="p">()];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">monthName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">MONTHS</span><span class="p">[</span><span class="nx">now</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()];</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">dateStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">dayName</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">monthName</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">now</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">getTextWidth</span><span class="p">(</span><span class="nx">dateStr</span><span class="p">,</span><span class="w"> </span><span class="nx">dateFont</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="nx">dateStr</span><span class="p">,</span><span class="w"> </span><span class="nx">dateFont</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">dateFont</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">30</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">watch</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"minutechange"</span><span class="p">,</span><span class="w"> </span><span class="nx">draw</span><span class="p">);</span>
+</pre></div><h2 id="analog-watchface-concepts" class="anchor">Analog Watchface Concepts</h2><p>For analog watchfaces, calculate hand positions based on time:</p><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">getHandAngles</span><span class="p">(</span><span class="nx">now</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">hours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">now</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">12</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">minutes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">now</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">now</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Angles in degrees (0 = 12 o'clock)</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">secondAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">seconds</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">6</span><span class="p">;</span><span class="w">              </span><span class="c1">// 360/60 = 6 degrees per second</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">minuteAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">minutes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">6</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">seconds</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">hourAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">hours</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">30</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">minutes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span><span class="w"> </span><span class="c1">// 360/12 = 30 degrees per hour</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">hourAngle</span><span class="p">,</span><span class="w"> </span><span class="nx">minuteAngle</span><span class="p">,</span><span class="w"> </span><span class="nx">secondAngle</span><span class="w"> </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div><h3 id="drawing-clock-hands" class="anchor">Drawing Clock Hands</h3><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">drawHand</span><span class="p">(</span><span class="nx">cx</span><span class="p">,</span><span class="w"> </span><span class="nx">cy</span><span class="p">,</span><span class="w"> </span><span class="nx">angle</span><span class="p">,</span><span class="w"> </span><span class="nx">length</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">thickness</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Convert angle to radians (0 degrees = up)</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">radians</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">angle</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">90</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">180</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">endX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">radians</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">length</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">endY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cy</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">radians</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">length</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawLine</span><span class="p">(</span><span class="nx">cx</span><span class="p">,</span><span class="w"> </span><span class="nx">cy</span><span class="p">,</span><span class="w"> </span><span class="nx">endX</span><span class="p">,</span><span class="w"> </span><span class="nx">endY</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="p">,</span><span class="w"> </span><span class="nx">thickness</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">drawAnalogClock</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">cx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">cy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">hourAngle</span><span class="p">,</span><span class="w"> </span><span class="nx">minuteAngle</span><span class="p">,</span><span class="w"> </span><span class="nx">secondAngle</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getHandAngles</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">date</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">white</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Hour hand</span>
+<span class="w">    </span><span class="nx">drawHand</span><span class="p">(</span><span class="nx">cx</span><span class="p">,</span><span class="w"> </span><span class="nx">cy</span><span class="p">,</span><span class="w"> </span><span class="nx">hourAngle</span><span class="p">,</span><span class="w"> </span><span class="mf">35</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Minute hand</span>
+<span class="w">    </span><span class="nx">drawHand</span><span class="p">(</span><span class="nx">cx</span><span class="p">,</span><span class="w"> </span><span class="nx">cy</span><span class="p">,</span><span class="w"> </span><span class="nx">minuteAngle</span><span class="p">,</span><span class="w"> </span><span class="mf">55</span><span class="p">,</span><span class="w"> </span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Second hand</span>
+<span class="w">    </span><span class="nx">drawHand</span><span class="p">(</span><span class="nx">cx</span><span class="p">,</span><span class="w"> </span><span class="nx">cy</span><span class="p">,</span><span class="w"> </span><span class="nx">secondAngle</span><span class="p">,</span><span class="w"> </span><span class="mf">60</span><span class="p">,</span><span class="w"> </span><span class="nx">red</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Center dot</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawCircle</span><span class="p">(</span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="nx">cx</span><span class="p">,</span><span class="w"> </span><span class="nx">cy</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">360</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div><h2 id="using-piu-for-watchfaces" class="anchor">Using Piu for Watchfaces</h2><p>You can also build watchfaces with the Piu framework:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"piu/MC"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">backgroundSkin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Skin</span><span class="p">({</span><span class="w"> </span><span class="nx">fill</span><span class="o">:</span><span class="w"> </span><span class="s2">"white"</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">timeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Style</span><span class="p">({</span><span class="w"> </span><span class="nx">font</span><span class="o">:</span><span class="w"> </span><span class="s2">"42px Bitham-Black"</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">"black"</span><span class="w"> </span><span class="p">});</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nx">ClockBehavior</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Behavior</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onDisplaying</span><span class="p">(</span><span class="nx">label</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">updateTime</span><span class="p">(</span><span class="nx">label</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">updateTime</span><span class="p">(</span><span class="nx">label</span><span class="p">,</span><span class="w"> </span><span class="nx">date</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()).</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"0"</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()).</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"0"</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">label</span><span class="p">.</span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">h</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">m</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">WatchfaceApp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Application</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">$</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">    </span><span class="nx">skin</span><span class="o">:</span><span class="w"> </span><span class="nx">backgroundSkin</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">contents</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nx">Label</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">anchor</span><span class="o">:</span><span class="w"> </span><span class="s2">"TIME"</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">style</span><span class="o">:</span><span class="w"> </span><span class="nx">timeStyle</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">Behavior</span><span class="o">:</span><span class="w"> </span><span class="nx">ClockBehavior</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nx">Behavior</span><span class="o">:</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Behavior</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">onCreate</span><span class="p">(</span><span class="nx">app</span><span class="p">,</span><span class="w"> </span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">watch</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"minutechange"</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">TIME</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s2">"updateTime"</span><span class="p">,</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">date</span><span class="p">);</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}));</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">WatchfaceApp</span><span class="p">({},</span><span class="w"> </span><span class="p">{});</span>
+</pre></div><h2 id="battery-and-connection-status" class="anchor">Battery and Connection Status</h2><p>Good watchfaces show battery and connection status:</p><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Battery</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"embedded:sensor/Battery"</span><span class="p">;</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">batteryPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">isConnected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+
+<span class="c1">// Battery monitoring</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">battery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Battery</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">onSample</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">batteryPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">sample</span><span class="p">().</span><span class="nx">percent</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">updateDisplay</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">batteryPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">battery</span><span class="p">.</span><span class="nx">sample</span><span class="p">().</span><span class="nx">percent</span><span class="p">;</span>
+
+<span class="c1">// Connection monitoring</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">checkConnection</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">isConnected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">watch</span><span class="p">.</span><span class="nx">connected</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Connected: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">isConnected</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">updateDisplay</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nx">watch</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'connected'</span><span class="p">,</span><span class="w"> </span><span class="nx">checkConnection</span><span class="p">);</span>
+<span class="nx">checkConnection</span><span class="p">();</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">drawStatusBar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Battery indicator</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">batteryText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">batteryPercent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"%"</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="nx">batteryText</span><span class="p">,</span><span class="w"> </span><span class="nx">smallFont</span><span class="p">,</span><span class="w"> </span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Connection indicator (show X when disconnected)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">isConnected</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="s2">"X"</span><span class="p">,</span><span class="w"> </span><span class="nx">smallFont</span><span class="p">,</span><span class="w"> </span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div><h2 id="performance-tips" class="anchor">Performance Tips</h2>
+<ol>
+<li><p><strong>Use minutechange when possible</strong>: Updating every minute instead of every
+second significantly improves battery life.</p></li>
+<li><p><strong>Minimize redraw area</strong>: Use <code>render.begin(x, y, w, h)</code> to only update
+changed portions of the screen.</p></li>
+<li><p><strong>Precompute values</strong>: Calculate font sizes, positions, and colors once at
+startup.</p></li>
+<li><p><strong>Avoid complex calculations in draw</strong>: Do math outside the render
+begin/end block when possible.</p></li>
+<li><p><strong>Use the provided Date</strong>: Use the <code>Date</code> instance from the event instead of
+creating your own.</p></li>
+</ol>
+<h2 id="complete-example-minimal-watchface" class="anchor">Complete Example: Minimal Watchface</h2><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">Poco</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"commodetto/Poco"</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">Battery</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"embedded:sensor/Battery"</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">render</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Poco</span><span class="p">(</span><span class="nx">screen</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">timeFont</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">Font</span><span class="p">(</span><span class="s2">"Leco-Regular"</span><span class="p">,</span><span class="w"> </span><span class="mf">42</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">dateFont</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">Font</span><span class="p">(</span><span class="s2">"Gothic-Regular"</span><span class="p">,</span><span class="w"> </span><span class="mf">18</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">white</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">,</span><span class="w"> </span><span class="mf">255</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">gray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">makeColor</span><span class="p">(</span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">,</span><span class="w"> </span><span class="mf">128</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">DAYS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"Sunday"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Monday"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Tuesday"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Wednesday"</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">"Thursday"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Friday"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Saturday"</span><span class="p">];</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">batteryPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">battery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Battery</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">onSample</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">batteryPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">sample</span><span class="p">().</span><span class="nx">percent</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+<span class="nx">batteryPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">battery</span><span class="p">.</span><span class="nx">sample</span><span class="p">().</span><span class="nx">percent</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">draw</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">date</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">begin</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">fillRectangle</span><span class="p">(</span><span class="nx">black</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Time</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()).</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"0"</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()).</span><span class="nx">padStart</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"0"</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">timeStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">h</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">m</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">getTextWidth</span><span class="p">(</span><span class="nx">timeStr</span><span class="p">,</span><span class="w"> </span><span class="nx">timeFont</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="nx">timeStr</span><span class="p">,</span><span class="w"> </span><span class="nx">timeFont</span><span class="p">,</span><span class="w"> </span><span class="nx">white</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">timeFont</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Day of week</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">dayStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">DAYS</span><span class="p">[</span><span class="nx">now</span><span class="p">.</span><span class="nx">getDay</span><span class="p">()];</span>
+<span class="w">    </span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">getTextWidth</span><span class="p">(</span><span class="nx">dayStr</span><span class="p">,</span><span class="w"> </span><span class="nx">dateFont</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="nx">dayStr</span><span class="p">,</span><span class="w"> </span><span class="nx">dateFont</span><span class="p">,</span><span class="w"> </span><span class="nx">gray</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Battery</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">batteryStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">batteryPercent</span><span class="si">}</span><span class="sb">%`</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">render</span><span class="p">.</span><span class="nx">getTextWidth</span><span class="p">(</span><span class="nx">batteryStr</span><span class="p">,</span><span class="w"> </span><span class="nx">dateFont</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">drawText</span><span class="p">(</span><span class="nx">batteryStr</span><span class="p">,</span><span class="w"> </span><span class="nx">dateFont</span><span class="p">,</span><span class="w"> </span><span class="nx">gray</span><span class="p">,</span>
+<span class="w">        </span><span class="p">(</span><span class="nx">render</span><span class="p">.</span><span class="nx">width</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">width</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">render</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">dateFont</span><span class="p">.</span><span class="nx">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">render</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">watch</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"minutechange"</span><span class="p">,</span><span class="w"> </span><span class="nx">draw</span><span class="p">);</span>
+</pre></div><h2 id="examples" class="anchor">Examples</h2><p>The <a href="https://github.com/Moddable-OpenSource/pebble-examples" title="" class="">Pebble Examples</a>
+repository includes watchface examples:</p>
+<ul>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellowatchface" title="" class=""><code>hellowatchface</code></a> - simple digital watchface using Poco</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/cupertino" title="" class=""><code>piu/watchfaces/cupertino</code></a> - classic macOS cursor clock</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/london" title="" class=""><code>piu/watchfaces/london</code></a> - Big Ben-inspired analog watchface</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/helsinki" title="" class=""><code>piu/watchfaces/helsinki</code></a> - Nokia style digital watchface</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/redmond" title="" class=""><code>piu/watchfaces/redmond</code></a> - classic Windows clock</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/piu/watchfaces/zurich" title="" class=""><code>piu/watchfaces/zurich</code></a> - Swiss train station clock</li>
+</ul>
+
+    </div>
+    
+    <a id="comments" class="anchor"></a>
+    <div id="disqus_thread" aria-live="polite" data-post-url="https://developer.repebble.com/guides/alloy/watchfaces/">
+      You need JavaScript enabled to read and post comments.
+    </div>
+    
+    
+  </div>
+  
+    <div class="col-m-4 hidden-s hidden-xs hidden-m">
+      <div class="gray-box gray-box--fixed gray-box--scrollspy">
+        
+
+
+  <h3>Overview</h3>
+  <ul class="toc">
+    
+      <li class="toc__item toc__item--level1"><a href="#configuration">Configuration</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#time-events">Time Events</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#basic-watchface">Basic Watchface</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#getting-time-components">Getting Time Components</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#formatting-time">Formatting Time</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#watchface-with-date">Watchface with Date</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#analog-watchface-concepts">Analog Watchface Concepts</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#drawing-clock-hands">Drawing Clock Hands</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#using-piu-for-watchfaces">Using Piu for Watchfaces</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#battery-and-connection-status">Battery and Connection Status</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#performance-tips">Performance Tips</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#complete-example-minimal-watchface">Complete Example: Minimal Watchface</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#examples">Examples</a></li>
+    
+  </ul>
+
+        
+        
+      </div>
+    </div>
+  
+</div>
+
+  </div>
+</div>
+
+
+    
+  </div>
+  <script type="text/javascript">
+    var searchPrimary = '';
+  </script>
+  
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/libs-ff95f116ad324def69395db037808d5a.js"></script>
+  
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/templates.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/app.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/search.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/quicksearch.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/disqus.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<!--
+ Copyright 2025 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Storage // Pebble Developers</title>
+  <meta property="og:site_name" content="Pebble Developers" />
+  <meta property="og:title" content="Storage" />
+  <meta property="og:url" content="https://developer.repebble.com/guides/alloy/storage/" />
+  
+  <meta property="og:description" content="Persist data between app launches using localStorage, key-value storage, or files.
+" />
+  <meta name="description" content="Persist data between app launches using localStorage, key-value storage, or files.
+">
+  
+  <meta property="og:type" content="website" />
+  
+  <meta property="og:image" content="https://developer.repebble.com/assets/images/menu/guides.png" />
+  
+  
+  <meta name="theme-color" content="#e5e327">
+  <link rel="canonical" href="https://developer.repebble.com/guides/alloy/storage/">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+  <link href="https://developer.repebble.com/assets/favicon.png" rel="shortcut icon" type="image/vnd.microsoft.icon" id="favicon">
+  <link rel="stylesheet" type="text/css" href="https://developer.repebble.com/assets/css/main.css">
+  
+  <noscript>
+  <link rel="stylesheet" type="text/css" href="https://developer.repebble.com/assets/css/noscript.css">
+  </noscript>
+  
+  <script type="text/javascript" >
+    var _rollbarConfig = {
+      accessToken: '',
+      captureUncaught: true,
+      payload: {
+        environment: 'production'
+      }
+    };
+    !function(a,b){function c(b){this.shimId=++h,this.notifier=null,this.parentShim=b,this.logger=function(){},a.console&&void 0===a.console.shimId&&(this.logger=a.console.log)}function d(b,c,d){a._rollbarWrappedError&&(d[4]||(d[4]=a._rollbarWrappedError),d[5]||(d[5]=a._rollbarWrappedError._rollbarContext),a._rollbarWrappedError=null),b.uncaughtError.apply(b,d),c&&c.apply(a,d)}function e(b){var d=c;return g(function(){if(this.notifier)return this.notifier[b].apply(this.notifier,arguments);var c=this,e="scope"===b;e&&(c=new d(this));var f=Array.prototype.slice.call(arguments,0),g={shim:c,method:b,args:f,ts:new Date};return a._rollbarShimQueue.push(g),e?c:void 0})}function f(a,b){if(b.hasOwnProperty&&b.hasOwnProperty("addEventListener")){var c=b.addEventListener;b.addEventListener=function(b,d,e){c.call(this,b,a.wrap(d),e)};var d=b.removeEventListener;b.removeEventListener=function(a,b,c){d.call(this,a,b&&b._wrapped?b._wrapped:b,c)}}}function g(a,b){return b=b||this.logger,function(){try{return a.apply(this,arguments)}catch(c){b("Rollbar internal error:",c)}}}var h=0;c.init=function(a,b){var e=b.globalAlias||"Rollbar";if("object"==typeof a[e])return a[e];a._rollbarShimQueue=[],a._rollbarWrappedError=null,b=b||{};var h=new c;return g(function(){if(h.configure(b),b.captureUncaught){var c=a.onerror;a.onerror=function(){var a=Array.prototype.slice.call(arguments,0);d(h,c,a)};var g,i,j="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(g=0;g<j.length;++g)i=j[g],a[i]&&a[i].prototype&&f(h,a[i].prototype)}return a[e]=h,h},h.logger)()},c.prototype.loadFull=function(a,b,c,d,e){var f=g(function(){var a=b.createElement("script"),e=b.getElementsByTagName("script")[0];a.src=d.rollbarJsUrl,a.async=!c,a.onload=h,e.parentNode.insertBefore(a,e)},this.logger),h=g(function(){var b;if(void 0===a._rollbarPayloadQueue){var c,d,f,g;for(b=new Error("rollbar.js did not load");c=a._rollbarShimQueue.shift();)for(f=c.args,g=0;g<f.length;++g)if(d=f[g],"function"==typeof d){d(b);break}}"function"==typeof e&&e(b)},this.logger);g(function(){c?f():a.addEventListener?a.addEventListener("load",f,!1):a.attachEvent("onload",f)},this.logger)()},c.prototype.wrap=function(b,c){try{var d;if(d="function"==typeof c?c:function(){return c||{}},"function"!=typeof b)return b;if(b._isWrap)return b;if(!b._wrapped){b._wrapped=function(){try{return b.apply(this,arguments)}catch(c){throw c._rollbarContext=d(),c._rollbarContext._wrappedSource=b.toString(),a._rollbarWrappedError=c,c}},b._wrapped._isWrap=!0;for(var e in b)b.hasOwnProperty(e)&&(b._wrapped[e]=b[e])}return b._wrapped}catch(f){return b}};for(var i="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError".split(","),j=0;j<i.length;++j)c.prototype[i[j]]=e(i[j]);var k="//d37gvrvc0wt4s1.cloudfront.net/js/v1.1/rollbar.min.js";_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||k;var l=c.init(a,_rollbarConfig);l.loadFull(a,b,!1,_rollbarConfig)}(window,document);
+  </script>
+  <script type="text/javascript" async>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+</head>
+<body class="">
+  <div class="mmenu__wrapper">
+    <div class="sidebar__wrapper sidebar__wrapper--sectionmenu">
+  <div class="sidebar sidebar--narrow">
+    <a href="/" class="sidebar__header">
+      <span>pebble</span>
+    </a>
+    <ul class="mainmenu">
+      
+
+<li class="mainmenu__item mainmenu__item--getting-started"><a href="/tutorials/"><span>Tutorials</span></a></li>
+<li class="mainmenu__item mainmenu__item--sdk"><a href="/sdk/"><span>Get the SDK</span></a></li>
+<li class="mainmenu__item mainmenu__item--guides active"><a href="/guides/"><span>Guides</span></a></li>
+<li class="mainmenu__item mainmenu__item--docs"><a href="/docs/"><span>Documentation</span></a></li>
+<li class="mainmenu__item mainmenu__item--examples"><a href="/examples/"><span>Examples</span></a></li>
+<li class="mainmenu__item mainmenu__item--community"><a href="/community/"><span>Community</span></a></li>
+<li class="mainmenu__item mainmenu__item--blog"><a href="https://repebble.com/blog" target="_blank"><span>Blog</span></a></li>
+<li class="mainmenu__item mainmenu__item--more"><a href="/more/"><span>More</span></a></li>
+
+    </ul>
+    <div class="sidebar__legal">
+      <a href="https://repebble.com/privacy/" target="_blank">Privacy</a>
+      <br>
+      <a href="https://repebble.com/terms" target="_blank">Cookies</a>
+    </div>
+    <a href="https://developer.rePebble.com/dashboard" target="_blank" class="sidebar__footer">Publish</a>
+  </div>
+  <div class="section-menu section-menu--guides section-menu--light">
+    <div class="section-menu__header">
+      <h3><a href="/guides/">Guides</a></h3>
+    </div>
+    <ul>
+      <li class="section-menu__item">
+        <a href="/guides/toc/">Table of Contents</a>
+      </li>
+      
+        
+        
+        
+        <li class="section-menu__item open">
+          <a href="/guides/alloy/">
+            
+            Alloy
+          </a>
+          
+            <ul>
+            
+            
+            
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/getting-started/"><span>Getting Started with Alloy</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/piu-guide/"><span>Piu UI Framework</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/poco-guide/"><span>Poco Graphics</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/sensors-and-input/"><span>Sensors and Input</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem active">
+                  <a href="/guides/alloy/storage/"><span>Storage</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/networking/"><span>Networking</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/app-messages/"><span>App Messages</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/watchfaces/"><span>Watchfaces</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/animations/"><span>Animations</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/port-drawing/"><span>Port (Custom Drawing)</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/advanced-networking/"><span>Advanced Networking</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/ffi/"><span>Native Functions (FFI)</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/dictation/"><span>Dictation</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/wakeups/"><span>Wakeups</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/vibration/"><span>Vibration</span></a>
+                </li>
+              
+            
+              
+                <li class="section-menu__subitem">
+                  <a href="/guides/alloy/device-info/"><span>Device Info and App Events</span></a>
+                </li>
+              
+            
+            
+            </ul>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/app-resources/">
+            
+            App Resources
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/best-practices/">
+            
+            Best Practices
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/communication/">
+            
+            Communication
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/debugging/">
+            
+            Debugging
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/design-and-interaction/">
+            
+            Design and Interaction
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/events-and-services/">
+            
+            Events and Services
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/graphics-and-animations/">
+            
+            Graphics and Animations
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/pebble-packages/">
+            
+            Pebble Packages
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/pebble-timeline/">
+            
+            Pebble Timeline
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/tools-and-resources/">
+            
+            Tools and Resources
+          </a>
+          
+        </li>
+      
+        
+        
+        
+        <li class="section-menu__item">
+          <a href="/guides/user-interfaces/">
+            
+            User Interfaces
+          </a>
+          
+        </li>
+      
+    </ul>
+  </div>
+</div><!-- sidebar__wrapper -->
+<div class="content content--section-menu">
+  
+
+<div class="search">
+  <a  href="javascript:void(0);" class="mobile-nav__hamburger js-mobile-nav-toggle"><i class="fa fa-reorder"></i></a>
+  <i class="fa fa-lg fa-search search__icon"></i><input type="search" id="quicksearch" placeholder="Search Developer Site">
+</div>
+<div class="quicksearch" style="display: none;" id="quicksearch__results"></div>
+<div id="search__blackout" style="display: none;"></div>
+
+  <div class="container">
+    
+
+
+<div class="visible-m visible-s visible-xs row">
+  <div class="col-xs-12">
+    <div class="form__group">
+      <div class="select-style no-label">
+        <select class="js-toc-select">
+          
+            <option value="localstorage-recommended">localStorage (Recommended)</option>
+          
+            <option value="localstorage-methods">- localStorage Methods</option>
+          
+            <option value="example-persistent-counter">- Example: Persistent Counter</option>
+          
+            <option value="storing-objects">- Storing Objects</option>
+          
+            <option value="key-value-storage-ecma-419">Key-Value Storage (ECMA-419)</option>
+          
+            <option value="device-keyvalue-open-options">- device.keyValue.open() Options</option>
+          
+            <option value="store-methods">- Store Methods</option>
+          
+            <option value="example-settings-with-key-value-storage">- Example: Settings with Key-Value Storage</option>
+          
+            <option value="files-ecma-419">Files (ECMA-419)</option>
+          
+            <option value="openfile-options">- openFile() Options</option>
+          
+            <option value="file-methods">- File Methods</option>
+          
+            <option value="choosing-between-apis">Choosing Between APIs</option>
+          
+            <option value="storage-limits">Storage Limits</option>
+          
+            <option value="data-persistence">Data Persistence</option>
+          
+            <option value="error-handling">Error Handling</option>
+          
+            <option value="complete-example-high-score-tracker">Complete Example: High Score Tracker</option>
+          
+            <option value="examples">Examples</option>
+          
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-l-8 col-m-12">
+    <h1 class="pagetitle">Storage</h1>
+    
+    <div class="markdown markdown--staff">
+    <p>Alloy provides several ways to persist data on the watch: the Web standard
+<code>localStorage</code> API, the ECMA-419 Key-Value Storage API, and a file system API.</p>
+<blockquote>
+<p><strong>Note</strong>: All code in this guide runs on the watch in <code>src/embeddedjs/main.js</code>.</p></blockquote>
+<h2 id="localstorage-recommended" class="anchor">localStorage (Recommended)</h2><p>The <code>localStorage</code> API provides a simple, familiar way to store string data:</p><p><strong>⌚ Watch</strong>:</p><div class="highlight"><pre><span></span><span class="c1">// Store a value</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">"username"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Alice"</span><span class="p">);</span>
+
+<span class="c1">// Retrieve a value</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">"username"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"username: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">username</span><span class="p">);</span><span class="w">  </span><span class="c1">// "Alice"</span>
+
+<span class="c1">// Remove a value</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="s2">"username"</span><span class="p">);</span>
+</pre></div><h3 id="localstorage-methods" class="anchor">localStorage Methods</h3>
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>setItem(key, value)</code></td>
+<td>Store a value</td>
+</tr>
+<tr>
+<td><code>getItem(key)</code></td>
+<td>Retrieve a value (returns <code>null</code> if not found)</td>
+</tr>
+<tr>
+<td><code>removeItem(key)</code></td>
+<td>Delete a value</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Remove all stored values</td>
+</tr>
+</tbody></table>
+<h3 id="example-persistent-counter" class="anchor">Example: Persistent Counter</h3><div class="highlight"><pre><span></span><span class="c1">// Get current count or start at 0</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">"counter"</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">counter</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"initializing counter"</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">counter</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"save counter value "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">counter</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">"counter"</span><span class="p">,</span><span class="w"> </span><span class="nx">counter</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"reset counter"</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="s2">"counter"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div><h3 id="storing-objects" class="anchor">Storing Objects</h3><p>Since <code>localStorage</code> only stores strings, serialize objects with JSON:</p><div class="highlight"><pre><span></span><span class="c1">// Store an object</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">theme</span><span class="o">:</span><span class="w"> </span><span class="s2">"dark"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">notifications</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">fontSize</span><span class="o">:</span><span class="w"> </span><span class="mf">14</span>
+<span class="p">};</span>
+<span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">"settings"</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">settings</span><span class="p">));</span>
+
+<span class="c1">// Retrieve the object</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">stored</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">"settings"</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">stored</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">stored</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"theme: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">settings</span><span class="p">.</span><span class="nx">theme</span><span class="p">);</span><span class="w">  </span><span class="c1">// "dark"</span>
+<span class="p">}</span>
+</pre></div><h2 id="key-value-storage-ecma-419" class="anchor">Key-Value Storage (ECMA-419)</h2><p>For more control, and to be able to store binary data as well as strings, use
+the ECMA-419 Key-Value Storage API:</p><div class="highlight"><pre><span></span><span class="c1">// Open a storage file</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">device</span><span class="p">.</span><span class="nx">keyValue</span><span class="p">.</span><span class="nx">open</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s2">"mysettings"</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">format</span><span class="o">:</span><span class="w"> </span><span class="s2">"string"</span>
+<span class="p">});</span>
+
+<span class="c1">// Write a value</span>
+<span class="nx">store</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"counter"</span><span class="p">,</span><span class="w"> </span><span class="s2">"42"</span><span class="p">);</span>
+
+<span class="c1">// Read a value</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">store</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="s2">"counter"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"value: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">value</span><span class="p">);</span><span class="w">  </span><span class="c1">// "42"</span>
+
+<span class="c1">// Delete a value</span>
+<span class="nx">store</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="s2">"counter"</span><span class="p">);</span>
+
+<span class="c1">// Close when done</span>
+<span class="nx">store</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</pre></div><h3 id="device-keyvalue-open-options" class="anchor">device.keyValue.open() Options</h3>
+<table><thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>path</code></td>
+<td>Name of the storage file (required)</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td>Data format: <code>&quot;string&quot;</code> or <code>&quot;buffer&quot;</code></td>
+</tr>
+</tbody></table>
+<h3 id="store-methods" class="anchor">Store Methods</h3>
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>write(key, value)</code></td>
+<td>Store a value</td>
+</tr>
+<tr>
+<td><code>read(key)</code></td>
+<td>Retrieve a value (returns <code>undefined</code> if not found)</td>
+</tr>
+<tr>
+<td><code>delete(key)</code></td>
+<td>Remove a value</td>
+</tr>
+<tr>
+<td><code>close()</code></td>
+<td>Close the storage file</td>
+</tr>
+</tbody></table>
+<h3 id="example-settings-with-key-value-storage" class="anchor">Example: Settings with Key-Value Storage</h3><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">device</span><span class="p">.</span><span class="nx">keyValue</span><span class="p">.</span><span class="nx">open</span><span class="p">({</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s2">"appsettings"</span><span class="p">,</span><span class="w"> </span><span class="nx">format</span><span class="o">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w"> </span><span class="p">});</span>
+
+<span class="c1">// Save settings</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">saveSettings</span><span class="p">(</span><span class="nx">settings</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">store</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"settings"</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">settings</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Load settings with defaults</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">loadSettings</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">stored</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">store</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="s2">"settings"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">stored</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">stored</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">vibrate</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">brightness</span><span class="o">:</span><span class="w"> </span><span class="mf">50</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">loadSettings</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Vibrate: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">settings</span><span class="p">.</span><span class="nx">vibrate</span><span class="p">);</span>
+
+<span class="c1">// Modify and save</span>
+<span class="nx">settings</span><span class="p">.</span><span class="nx">brightness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">75</span><span class="p">;</span>
+<span class="nx">saveSettings</span><span class="p">(</span><span class="nx">settings</span><span class="p">);</span>
+
+<span class="nx">store</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</pre></div><h2 id="files-ecma-419" class="anchor">Files (ECMA-419)</h2><p>For storing larger data, use the file system API via <code>device.files</code>:</p><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"example.json"</span><span class="p">;</span>
+
+<span class="c1">// Write a file</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">jsonData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="nx">score</span><span class="o">:</span><span class="w"> </span><span class="mf">1500</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">ArrayBuffer</span><span class="p">.</span><span class="nx">fromString</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">jsonData</span><span class="p">));</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">save</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">device</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="nx">openFile</span><span class="p">({</span><span class="w"> </span><span class="nx">path</span><span class="p">,</span><span class="w"> </span><span class="nx">mode</span><span class="o">:</span><span class="w"> </span><span class="s2">"r+"</span><span class="p">,</span><span class="w"> </span><span class="nx">size</span><span class="o">:</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">byteLength</span><span class="w"> </span><span class="p">});</span>
+<span class="nx">save</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="nx">save</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+
+<span class="c1">// Read a file</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">load</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">device</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="nx">openFile</span><span class="p">({</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">loaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">load</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="nx">load</span><span class="p">.</span><span class="nx">status</span><span class="p">().</span><span class="nx">size</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="nx">load</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">parsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nb">String</span><span class="p">.</span><span class="nx">fromArrayBuffer</span><span class="p">(</span><span class="nx">loaded</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">parsed</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span><span class="w">  </span><span class="c1">// "Alice"</span>
+
+<span class="c1">// Delete a file</span>
+<span class="nx">device</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="ow">delete</span><span class="p">(</span><span class="nx">path</span><span class="p">);</span>
+</pre></div><h3 id="openfile-options" class="anchor">openFile() Options</h3>
+<table><thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>path</code></td>
+<td>File name (required)</td>
+</tr>
+<tr>
+<td><code>mode</code></td>
+<td><code>&quot;r&quot;</code> for read-only (default), <code>&quot;r+&quot;</code> for read-write</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>File size in bytes (required when creating with <code>&quot;r+&quot;</code>)</td>
+</tr>
+</tbody></table>
+<h3 id="file-methods" class="anchor">File Methods</h3>
+<table><thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>write(buffer, offset)</code></td>
+<td>Write an ArrayBuffer at the given byte offset</td>
+</tr>
+<tr>
+<td><code>read(count, offset)</code></td>
+<td>Read <code>count</code> bytes from the given byte offset</td>
+</tr>
+<tr>
+<td><code>status()</code></td>
+<td>Returns an object with <code>size</code> property</td>
+</tr>
+<tr>
+<td><code>close()</code></td>
+<td>Close the file</td>
+</tr>
+<tr>
+<td><code>device.files.delete(path)</code></td>
+<td>Delete a file</td>
+</tr>
+</tbody></table>
+<h2 id="choosing-between-apis" class="anchor">Choosing Between APIs</h2>
+<table><thead>
+<tr>
+<th>Feature</th>
+<th>localStorage</th>
+<th>Key-Value Storage</th>
+<th>Files</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>API Style</td>
+<td>Web standard</td>
+<td>ECMA-419</td>
+<td>ECMA-419</td>
+</tr>
+<tr>
+<td>Simplicity</td>
+<td>Simpler</td>
+<td>Moderate</td>
+<td>More verbose</td>
+</tr>
+<tr>
+<td>Global access</td>
+<td>Yes</td>
+<td>Yes (<code>device.keyValue</code>)</td>
+<td>Yes (<code>device.files</code>)</td>
+</tr>
+<tr>
+<td>Multiple stores</td>
+<td>No</td>
+<td>Yes (different paths)</td>
+<td>Yes (different paths)</td>
+</tr>
+<tr>
+<td>Binary data</td>
+<td>No (strings only)</td>
+<td>Yes (buffer format)</td>
+<td>Yes (ArrayBuffer)</td>
+</tr>
+<tr>
+<td>Random access</td>
+<td>No</td>
+<td>No</td>
+<td>Yes (read/write at offset)</td>
+</tr>
+</tbody></table>
+<p><strong>Recommendation</strong>: Use <code>localStorage</code> for most cases. Use Key-Value Storage
+when you need multiple isolated stores or binary key-value pairs. Use Files
+when you need random access or large binary data.</p><h2 id="storage-limits" class="anchor">Storage Limits</h2><p>Pebble has limited storage space. Keep stored data minimal:</p>
+<ul>
+<li>Store only essential data</li>
+<li>Clean up old or unused data</li>
+<li>Avoid storing large objects</li>
+<li>Consider compressing data if storing significant amounts</li>
+</ul>
+<h2 id="data-persistence" class="anchor">Data Persistence</h2><p>Data stored with all three APIs persists across:</p>
+<ul>
+<li>App restarts</li>
+<li>Watch reboots</li>
+<li>App updates (unless the app is uninstalled)</li>
+</ul>
+<p>Data is deleted when:</p>
+<ul>
+<li>The app is uninstalled</li>
+<li>The user performs a factory reset</li>
+<li>You explicitly delete it with <code>removeItem()</code> or <code>delete()</code></li>
+</ul>
+<h2 id="error-handling" class="anchor">Error Handling</h2><p>The storage APIs can fail if storage is full or corrupted:</p><div class="highlight"><pre><span></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">"key"</span><span class="p">,</span><span class="w"> </span><span class="s2">"value"</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Failed to save data"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div><p>For Key-Value Storage:</p><div class="highlight"><pre><span></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">device</span><span class="p">.</span><span class="nx">keyValue</span><span class="p">.</span><span class="nx">open</span><span class="p">({</span><span class="w"> </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s2">"settings"</span><span class="p">,</span><span class="w"> </span><span class="nx">format</span><span class="o">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="nx">store</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">"key"</span><span class="p">,</span><span class="w"> </span><span class="s2">"value"</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">store</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Storage error: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div><h2 id="complete-example-high-score-tracker" class="anchor">Complete Example: High Score Tracker</h2><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"High Score Tracker"</span><span class="p">);</span>
+
+<span class="c1">// Load existing high scores</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">loadHighScores</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">stored</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">"highscores"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">stored</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">stored</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[];</span>
+<span class="p">}</span>
+
+<span class="c1">// Save high scores</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">saveHighScores</span><span class="p">(</span><span class="nx">scores</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">"highscores"</span><span class="p">,</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">scores</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Add a new score</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">addScore</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">score</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">scores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">loadHighScores</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">scores</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">score</span><span class="p">,</span><span class="w"> </span><span class="nx">date</span><span class="o">:</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span><span class="w"> </span><span class="p">});</span>
+
+<span class="w">    </span><span class="c1">// Keep only top 10</span>
+<span class="w">    </span><span class="nx">scores</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">score</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">score</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">scores</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">10</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nx">saveHighScores</span><span class="p">(</span><span class="nx">scores</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Added score: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">" - "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">score</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Display high scores</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">showHighScores</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">scores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">loadHighScores</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"=== HIGH SCORES ==="</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">scores</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">entry</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">((</span><span class="nx">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">". "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">entry</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">": "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">entry</span><span class="p">.</span><span class="nx">score</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="nx">addScore</span><span class="p">(</span><span class="s2">"Alice"</span><span class="p">,</span><span class="w"> </span><span class="mf">1500</span><span class="p">);</span>
+<span class="nx">addScore</span><span class="p">(</span><span class="s2">"Bob"</span><span class="p">,</span><span class="w"> </span><span class="mf">2000</span><span class="p">);</span>
+<span class="nx">addScore</span><span class="p">(</span><span class="s2">"Charlie"</span><span class="p">,</span><span class="w"> </span><span class="mf">1750</span><span class="p">);</span>
+
+<span class="nx">showHighScores</span><span class="p">();</span>
+</pre></div><h2 id="examples" class="anchor">Examples</h2><p>The <a href="https://github.com/Moddable-OpenSource/pebble-examples" title="" class="">Pebble Examples</a>
+repository includes storage examples:</p>
+<ul>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellolocalstorage" title="" class=""><code>hellolocalstorage</code></a> - persisting strings with the <code>localStorage</code> API</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellokeyvalue" title="" class=""><code>hellokeyvalue</code></a> - key-value storage with string and binary data</li>
+<li><a href="https://github.com/Moddable-OpenSource/pebble-examples/tree/main/hellofiles" title="" class=""><code>hellofiles</code></a> - reading and writing JSON data using <code>device.files</code></li>
+</ul>
+
+    </div>
+    
+    <a id="comments" class="anchor"></a>
+    <div id="disqus_thread" aria-live="polite" data-post-url="https://developer.repebble.com/guides/alloy/storage/">
+      You need JavaScript enabled to read and post comments.
+    </div>
+    
+    
+  </div>
+  
+    <div class="col-m-4 hidden-s hidden-xs hidden-m">
+      <div class="gray-box gray-box--fixed gray-box--scrollspy">
+        
+
+
+  <h3>Overview</h3>
+  <ul class="toc">
+    
+      <li class="toc__item toc__item--level1"><a href="#localstorage-recommended">localStorage (Recommended)</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#localstorage-methods">localStorage Methods</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#example-persistent-counter">Example: Persistent Counter</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#storing-objects">Storing Objects</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#key-value-storage-ecma-419">Key-Value Storage (ECMA-419)</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#device-keyvalue-open-options">device.keyValue.open() Options</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#store-methods">Store Methods</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#example-settings-with-key-value-storage">Example: Settings with Key-Value Storage</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#files-ecma-419">Files (ECMA-419)</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#openfile-options">openFile() Options</a></li>
+    
+      <li class="toc__item toc__item--level2"><a href="#file-methods">File Methods</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#choosing-between-apis">Choosing Between APIs</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#storage-limits">Storage Limits</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#data-persistence">Data Persistence</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#error-handling">Error Handling</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#complete-example-high-score-tracker">Complete Example: High Score Tracker</a></li>
+    
+      <li class="toc__item toc__item--level1"><a href="#examples">Examples</a></li>
+    
+  </ul>
+
+        
+        
+      </div>
+    </div>
+  
+</div>
+
+  </div>
+</div>
+
+
+    
+  </div>
+  <script type="text/javascript">
+    var searchPrimary = '';
+  </script>
+  
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/libs-ff95f116ad324def69395db037808d5a.js"></script>
+  
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/templates.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/app.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/search.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/quicksearch.js"></script>
+  <script type="text/javascript" src="https://developer.repebble.com/assets/js/disqus.js"></script>
+  
+</body>
+</html>
