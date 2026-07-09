@@ -68,18 +68,19 @@ export function draw(render) {
         const plant = state.plants[plantIdx];
         const y = 25 + i * itemHeight;
         
-        if (plantIdx === state.selectedPlantIdx) {
-          render.fillRectangle(cSelected, 0, y, render.width, itemHeight);
+        const isSelected = (plantIdx === state.selectedPlantIdx);
+        if (isSelected) {
+          render.fillRectangle(cAccent, 0, y, render.width, itemHeight);
         }
         
         render.drawText(plant.name || "Unnamed Plant", fontBold, 
-                        plantIdx === state.selectedPlantIdx ? cAccent : cText, 8, y + 4);
+                        isSelected ? cBgColor : cText, 8, y + 4);
         
         const relWater = getRelativeTime(plant.lastWatered);
         const relFert = getRelativeTime(plant.lastFertilized);
         const statusText = `W: ${relWater} | F: ${relFert}`;
         
-        render.drawText(statusText, fontRegular, cTextDim, 8, y + 22);
+        render.drawText(statusText, fontRegular, isSelected ? cBgColor : cTextDim, 8, y + 22);
         render.drawLine(0, y + itemHeight - 1, render.width, y + itemHeight - 1, cCardBg, 1);
       }
       
@@ -100,11 +101,12 @@ export function draw(render) {
       const option = ACTION_OPTIONS[actionIdx];
       const y = 25 + i * itemHeight;
       
-      if (actionIdx === state.selectedActionIdx) {
-        render.fillRectangle(cSelected, 0, y, render.width, itemHeight);
+      const isSelected = (actionIdx === state.selectedActionIdx);
+      if (isSelected) {
+        render.fillRectangle(cAccent, 0, y, render.width, itemHeight);
       }
       
-      const color = actionIdx === state.selectedActionIdx ? cAccent : (actionIdx === 0 ? cTextDim : cText);
+      const color = isSelected ? cBgColor : (actionIdx === 0 ? cTextDim : cText);
       render.drawText(option, fontBold, color, 12, y + 8);
       render.drawLine(0, y + itemHeight - 1, render.width, y + itemHeight - 1, cCardBg, 1);
     }
