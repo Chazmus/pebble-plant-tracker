@@ -8,6 +8,18 @@ Pebble.addEventListener('ready', function(e) {
 Pebble.addEventListener('showConfiguration', function(e) {
   var storedPlants = JSON.parse(localStorage.getItem('plant_tracker_settings') || '[]');
   
+  // Ensure all existing plants have unique IDs
+  var updated = false;
+  storedPlants.forEach(function(plant, i) {
+    if (!plant.id) {
+      plant.id = 'p_' + Date.now() + '_' + i + '_' + Math.floor(Math.random() * 1000);
+      updated = true;
+    }
+  });
+  if (updated) {
+    localStorage.setItem('plant_tracker_settings', JSON.stringify(storedPlants));
+  }
+  
   // Inject state directly into HTML string using a robust regex
   var html = configHtml.replace(/let\s+plants\s*=\s*\[\s*\]\s*;?/, 'let plants = ' + JSON.stringify(storedPlants) + ';');
   console.log('WebView Injection Status: ' + (html !== configHtml ? 'SUCCESS' : 'FAILED'));
@@ -139,26 +151,29 @@ function serializeHistory(history) {
   }
   // Cap history to 20 items to match watch MAX_HISTORY
   var items = history.slice(-20);
-  var buffer = new ArrayBuffer(items.length * 8);
-  var view = new DataView(buffer);
+  var bytes = [];
   
-  items.forEach(function(ev, i) {
+  for (var i = 0; i < items.length; i++) {
+    var ev = items[i];
     var timeSec = Math.floor(new Date(ev.time).getTime() / 1000) || 0;
     var type = ev.type !== undefined ? ev.type : 0;
     var amount = ev.amount !== undefined ? ev.amount : 0;
     
-    // Offset is i * 8
-    view.setUint32(i * 8, timeSec, true); // time (little-endian 32-bit)
-    view.setUint8(i * 8 + 4, type);       // type
-    view.setUint8(i * 8 + 5, amount);     // amount
-    view.setUint8(i * 8 + 6, 0);          // padding
-    view.setUint8(i * 8 + 7, 0);          // padding
-  });
-  
-  var uint8 = new Uint8Array(buffer);
-  var bytes = [];
-  for (var j = 0; j < uint8.length; j++) {
-    bytes.push(uint8[j]);
+    // 4 bytes time (little-endian unsigned 32-bit integer)
+    bytes.push(timeSec & 0xff);
+    bytes.push((timeSec >> 8) & 0xff);
+    bytes.push((timeSec >> 16) & 0xff);
+    bytes.push((timeSec >> 24) & 0xff);
+    
+    // 1 byte type
+    bytes.push(type & 0xff);
+    
+    // 1 byte amount
+    bytes.push(amount & 0xff);
+    
+    // 2 bytes padding (to align LogEvent struct to 8 bytes)
+    bytes.push(0);
+    bytes.push(0);
   }
   return bytes;
 }
