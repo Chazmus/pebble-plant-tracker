@@ -366,9 +366,27 @@
 
           const plantedVal = formatDateForInput(plant.plantedAt);
           
-          // History/status display
+          // History/status display (renders up to 4 most recent events of any type, with legacy fallback)
           let historyHtml = '';
-          if (plant.lastWatered || plant.lastFertilized) {
+          if (plant.history && plant.history.length > 0) {
+            historyHtml = `<div class="plant-history">`;
+            const recentEvents = plant.history.slice(-4).reverse();
+            recentEvents.forEach(ev => {
+              const eventDate = new Date(ev.time).toLocaleString();
+              let actionText = '';
+              if (ev.type === 0) actionText = 'Watered';
+              else if (ev.type === 1) actionText = `Fertilised (${ev.amount} ml/L)`;
+              else if (ev.type === 2) actionText = 'Repotted';
+              else if (ev.type === 3) actionText = 'Pruned';
+              else if (ev.type === 4) actionText = 'Rotated';
+              else if (ev.type === 5) actionText = 'Cleaned';
+              else if (ev.type === 6) actionText = 'Treated';
+              else if (ev.type === 7) actionText = 'Moved';
+              
+              historyHtml += `<div class="history-item"><span>${actionText}:</span> <span>${eventDate}</span></div>`;
+            });
+            historyHtml += `</div>`;
+          } else if (plant.lastWatered || plant.lastFertilized) {
             historyHtml = `<div class="plant-history">`;
             if (plant.lastWatered) {
               const waterDate = new Date(plant.lastWatered).toLocaleString();

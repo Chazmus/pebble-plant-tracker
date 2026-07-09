@@ -56,15 +56,41 @@ Pebble.addEventListener('appmessage', function(e) {
     var plants = JSON.parse(localStorage.getItem('plant_tracker_settings') || '[]');
     if (plants[index]) {
       if (logType === 0) {
-        // Water
         plants[index].lastWatered = logDateStr;
       } else if (logType === 1) {
-        // Fertilize
         plants[index].lastFertilized = logDateStr;
         plants[index].lastFertilizedAmount = logAmount;
+      } else if (logType === 2) {
+        plants[index].lastRepotted = logDateStr;
+      } else if (logType === 3) {
+        plants[index].lastPruned = logDateStr;
+      } else if (logType === 4) {
+        plants[index].lastRotated = logDateStr;
+      } else if (logType === 5) {
+        plants[index].lastCleaned = logDateStr;
+      } else if (logType === 6) {
+        plants[index].lastTreated = logDateStr;
+      } else if (logType === 7) {
+        plants[index].lastMoved = logDateStr;
       }
+
+      // Add to local history list
+      if (!plants[index].history) {
+        plants[index].history = [];
+      }
+      plants[index].history.push({
+        type: logType,
+        amount: logAmount,
+        time: logDateStr
+      });
+
+      // Keep last 15 items
+      if (plants[index].history.length > 15) {
+        plants[index].history.shift();
+      }
+
       localStorage.setItem('plant_tracker_settings', JSON.stringify(plants));
-      console.log('Updated plant log for ' + plants[index].name + ' in localStorage');
+      console.log('Updated plant log for ' + plants[index].name + ' (type ' + logType + ') in localStorage');
     } else {
       console.warn('Received log for invalid plant index: ' + index);
     }

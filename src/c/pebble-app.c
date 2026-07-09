@@ -146,13 +146,14 @@ static void number_selected_callback(struct NumberWindow *number_window, void *c
 }
 
 // --- Action Window Callbacks ---
-static void log_water_success(int index) {
+static void log_action_success(int index, uint8_t type) {
   if (index >= 0 && index < s_plant_count) {
-    // Update state
-    s_plants[index].last_watered = time(NULL);
+    if (type == 0) {
+      s_plants[index].last_watered = time(NULL);
+    }
     
     // Add to local history log
-    add_plant_history_event(&s_plants[index], 0, 0);
+    add_plant_history_event(&s_plants[index], type, 0);
     
     // Persist
     persist_write_data(PERSIST_KEY_PLANT_BASE + index, &s_plants[index], sizeof(Plant));
@@ -162,8 +163,8 @@ static void log_water_success(int index) {
     app_message_outbox_begin(&iter);
     if (iter) {
       dict_write_int32(iter, MESSAGE_KEY_AppKeyPlantIndex, index);
-      dict_write_int8(iter, MESSAGE_KEY_AppKeyLogType, 0); // 0 = water
-      dict_write_uint32(iter, MESSAGE_KEY_AppKeyLogTime, (uint32_t)s_plants[index].last_watered);
+      dict_write_int8(iter, MESSAGE_KEY_AppKeyLogType, type);
+      dict_write_uint32(iter, MESSAGE_KEY_AppKeyLogTime, (uint32_t)time(NULL));
       app_message_outbox_send();
     }
     
@@ -176,7 +177,7 @@ static void log_water_success(int index) {
 }
 
 static uint16_t action_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_index, void *context) {
-  return 3;
+  return 9;
 }
 
 static int16_t action_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *context) {
@@ -201,6 +202,18 @@ static void action_draw_row_callback(GContext *ctx, const Layer *cell_layer, Men
   } else if (cell_index->row == 1) {
     menu_cell_basic_draw(ctx, cell_layer, "Log Fertiliser", "Record fertilizer event", NULL);
   } else if (cell_index->row == 2) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Repotting", "Record repotting event", NULL);
+  } else if (cell_index->row == 3) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Pruning", "Record pruning event", NULL);
+  } else if (cell_index->row == 4) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Rotation", "Record pot rotation", NULL);
+  } else if (cell_index->row == 5) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Cleaning", "Record leaf cleaning", NULL);
+  } else if (cell_index->row == 6) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Treatment", "Record pest treatment", NULL);
+  } else if (cell_index->row == 7) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Relocation", "Record location change", NULL);
+  } else if (cell_index->row == 8) {
     menu_cell_basic_draw(ctx, cell_layer, "View History", "Show previous logs", NULL);
   }
 }
@@ -208,14 +221,19 @@ static void action_draw_row_callback(GContext *ctx, const Layer *cell_layer, Men
 static void action_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *context) {
   if (s_selected_plant_index < 0 || s_selected_plant_index >= s_plant_count) return;
   
-  if (cell_index->row == 0) {
-    log_water_success(s_selected_plant_index);
-  } else if (cell_index->row == 1) {
+  int index = s_selected_plant_index;
+  int row = cell_index->row;
+  
+  if (row == 0) {
+    log_action_success(index, 0); // 0 = Water
+  } else if (row == 1) {
     // Open number window to choose amount
-    int last_amt = s_plants[s_selected_plant_index].last_fertilized_amount;
+    int last_amt = s_plants[index].last_fertilized_amount;
     number_window_set_value(s_number_window, last_amt > 0 ? last_amt : 5);
     window_stack_push((Window *)s_number_window, true);
-  } else if (cell_index->row == 2) {
+  } else if (row >= 2 && row <= 7) {
+    log_action_success(index, row); // 2 = Repotted, 3 = Pruned, 4 = Rotated, 5 = Cleaned, 6 = Treated, 7 = Moved
+  } else if (row == 8) {
     // Open history logs window
     window_stack_push(s_history_window, true);
   }
