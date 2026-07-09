@@ -84,8 +84,8 @@ Pebble.addEventListener('appmessage', function(e) {
         time: logDateStr
       });
 
-      // Keep last 15 items
-      if (plants[index].history.length > 15) {
+      // Keep last 100 items
+      if (plants[index].history.length > 100) {
         plants[index].history.shift();
       }
 

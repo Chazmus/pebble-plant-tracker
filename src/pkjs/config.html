@@ -217,6 +217,25 @@
       display: flex;
       flex-direction: column;
       gap: 4px;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+
+    .plant-history::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .plant-history::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .plant-history::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+    }
+
+    .plant-history::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
 
     .history-item {
@@ -366,11 +385,11 @@
 
           const plantedVal = formatDateForInput(plant.plantedAt);
           
-          // History/status display (renders up to 4 most recent events of any type, with legacy fallback)
+          // History/status display (renders all history items, with legacy fallback)
           let historyHtml = '';
           if (plant.history && plant.history.length > 0) {
             historyHtml = `<div class="plant-history">`;
-            const recentEvents = plant.history.slice(-4).reverse();
+            const recentEvents = plant.history.slice().reverse();
             recentEvents.forEach(ev => {
               const eventDate = new Date(ev.time).toLocaleString();
               let actionText = '';

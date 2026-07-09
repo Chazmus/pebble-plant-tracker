@@ -4,7 +4,7 @@
 #define MAX_PLANTS 30
 #define PERSIST_KEY_PLANT_COUNT 99
 #define PERSIST_KEY_PLANT_BASE 100
-#define MAX_HISTORY 5
+#define MAX_HISTORY 20
 
 typedef struct {
   time_t time;
