@@ -39,7 +39,11 @@
       "AppKeyPlantDate",
       "AppKeyLogType",
       "AppKeyLogAmount",
-      "AppKeyLogTime"
+      "AppKeyLogTime",
+      "AppKeyLastWatered",
+      "AppKeyLastFertilized",
+      "AppKeyLastFertilisedAmount",
+      "AppKeyPlantHistory"
     ],
     "resources": {
       "media": []

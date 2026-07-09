@@ -78,28 +78,57 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
       snprintf(p.name, sizeof(p.name), "%s", name_tuple->value->cstring);
       p.planted_at = (time_t)date_tuple->value->uint32;
       
-      // Preserve history logs if we had this plant ID locally
-      bool found = false;
-      int backup_count = storage_get_backup_plant_count();
-      for (int i = 0; i < backup_count; i++) {
-        Plant *backup_p = storage_get_backup_plant(i);
-        if (backup_p && strcmp(backup_p->id, p.id) == 0) {
-          p.last_watered = backup_p->last_watered;
-          p.last_fertilized = backup_p->last_fertilized;
-          p.last_fertilized_amount = backup_p->last_fertilized_amount;
-          p.history_count = backup_p->history_count;
-          memcpy(p.history, backup_p->history, sizeof(p.history));
-          found = true;
-          break;
+      // Try to parse values sent directly from phone
+      Tuple *water_tuple = dict_find(iterator, MESSAGE_KEY_AppKeyLastWatered);
+      Tuple *fert_tuple = dict_find(iterator, MESSAGE_KEY_AppKeyLastFertilized);
+      Tuple *fert_amt_tuple = dict_find(iterator, MESSAGE_KEY_AppKeyLastFertilisedAmount);
+      Tuple *history_tuple = dict_find(iterator, MESSAGE_KEY_AppKeyPlantHistory);
+      
+      bool updated_from_phone = false;
+      if (water_tuple || fert_tuple || fert_amt_tuple || history_tuple) {
+        if (water_tuple) {
+          p.last_watered = (time_t)water_tuple->value->uint32;
         }
+        if (fert_tuple) {
+          p.last_fertilized = (time_t)fert_tuple->value->uint32;
+        }
+        if (fert_amt_tuple) {
+          p.last_fertilized_amount = fert_amt_tuple->value->int32;
+        }
+        if (history_tuple) {
+          int events_bytes = history_tuple->length;
+          int events_count = events_bytes / sizeof(LogEvent);
+          if (events_count > MAX_HISTORY) events_count = MAX_HISTORY;
+          p.history_count = events_count;
+          memcpy(p.history, history_tuple->value->data, events_count * sizeof(LogEvent));
+        }
+        updated_from_phone = true;
       }
       
-      if (!found) {
-        p.last_watered = 0;
-        p.last_fertilized = 0;
-        p.last_fertilized_amount = 0;
-        p.history_count = 0;
-        memset(p.history, 0, sizeof(p.history));
+      // If the phone didn't send them, preserve history logs if we had this plant ID locally
+      if (!updated_from_phone) {
+        bool found = false;
+        int backup_count = storage_get_backup_plant_count();
+        for (int i = 0; i < backup_count; i++) {
+          Plant *backup_p = storage_get_backup_plant(i);
+          if (backup_p && strcmp(backup_p->id, p.id) == 0) {
+            p.last_watered = backup_p->last_watered;
+            p.last_fertilized = backup_p->last_fertilized;
+            p.last_fertilized_amount = backup_p->last_fertilized_amount;
+            p.history_count = backup_p->history_count;
+            memcpy(p.history, backup_p->history, sizeof(p.history));
+            found = true;
+            break;
+          }
+        }
+        
+        if (!found) {
+          p.last_watered = 0;
+          p.last_fertilized = 0;
+          p.last_fertilized_amount = 0;
+          p.history_count = 0;
+          memset(p.history, 0, sizeof(p.history));
+        }
       }
       
       storage_save_plant(index, &p);

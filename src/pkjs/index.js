@@ -97,6 +97,36 @@ Pebble.addEventListener('appmessage', function(e) {
   }
 });
 
+function serializeHistory(history) {
+  if (!history || history.length === 0) {
+    return [];
+  }
+  // Cap history to 20 items to match watch MAX_HISTORY
+  var items = history.slice(-20);
+  var buffer = new ArrayBuffer(items.length * 8);
+  var view = new DataView(buffer);
+  
+  items.forEach(function(ev, i) {
+    var timeSec = Math.floor(new Date(ev.time).getTime() / 1000) || 0;
+    var type = ev.type !== undefined ? ev.type : 0;
+    var amount = ev.amount !== undefined ? ev.amount : 0;
+    
+    // Offset is i * 8
+    view.setUint32(i * 8, timeSec, true); // time (little-endian 32-bit)
+    view.setUint8(i * 8 + 4, type);       // type
+    view.setUint8(i * 8 + 5, amount);     // amount
+    view.setUint8(i * 8 + 6, 0);          // padding
+    view.setUint8(i * 8 + 7, 0);          // padding
+  });
+  
+  var uint8 = new Uint8Array(buffer);
+  var bytes = [];
+  for (var j = 0; j < uint8.length; j++) {
+    bytes.push(uint8[j]);
+  }
+  return bytes;
+}
+
 function sendPlantListToWatch(plants) {
   var queue = [];
   
@@ -110,11 +140,21 @@ function sendPlantListToWatch(plants) {
     var plantedDate = new Date(plant.plantedAt);
     var plantedTimeSec = Math.floor(plantedDate.getTime() / 1000) || 0;
     
+    var lastWateredSec = plant.lastWatered ? Math.floor(new Date(plant.lastWatered).getTime() / 1000) : 0;
+    var lastFertilizedSec = plant.lastFertilized ? Math.floor(new Date(plant.lastFertilized).getTime() / 1000) : 0;
+    var lastFertilizedAmount = plant.lastFertilizedAmount || 0;
+    var historyBytes = serializeHistory(plant.history);
+    
     var plantMsg = {};
     plantMsg[keys.AppKeyPlantIndex] = index;
     plantMsg[keys.AppKeyPlantId] = plant.id || '';
     plantMsg[keys.AppKeyPlantName] = plant.name || 'Unnamed Plant';
     plantMsg[keys.AppKeyPlantDate] = plantedTimeSec;
+    plantMsg[keys.AppKeyLastWatered] = lastWateredSec;
+    plantMsg[keys.AppKeyLastFertilized] = lastFertilizedSec;
+    plantMsg[keys.AppKeyLastFertilisedAmount] = lastFertilizedAmount;
+    plantMsg[keys.AppKeyPlantHistory] = historyBytes;
+    
     queue.push(plantMsg);
   });
   
