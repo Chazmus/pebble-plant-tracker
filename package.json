@@ -13,15 +13,11 @@
   "pebble": {
     "displayName": "Plant Tracker",
     "uuid": "38b74051-5193-4ca5-b1c0-e70fd94043b9",
+    "projectType": "moddable",
     "sdkVersion": "3",
     "enableMultiJS": true,
     "targetPlatforms": [
-      "aplite",
-      "basalt",
-      "chalk",
-      "diorite",
       "emery",
-      "flint",
       "gabbro"
     ],
     "watchapp": {

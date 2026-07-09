@@ -1,23 +1,19 @@
 #include <pebble.h>
-#include "types.h"
-#include "storage.h"
-#include "sync.h"
-#include "ui.h"
-
-static void prv_init(void) {
-  storage_init();
-  sync_init();
-  ui_init();
-  
-  sync_request();
-}
-
-static void prv_deinit(void) {
-  ui_deinit();
-}
 
 int main(void) {
-  prv_init();
-  app_event_loop();
-  prv_deinit();
+  Window *w = window_create();
+  window_stack_push(w, true);
+
+#ifdef PBL_DEBUG
+  // Built with `pebble build --debug`: enable the xsbug JavaScript debugger.
+  ModdableCreationRecord cr = {
+    .recordSize = sizeof(cr),
+    .flags = kModdableCreationFlagDebug,
+  };
+  moddable_createMachine(&cr);
+#else
+  moddable_createMachine(NULL);
+#endif
+
+  window_destroy(w);
 }
