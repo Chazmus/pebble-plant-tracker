@@ -23,14 +23,48 @@ Pebble.addEventListener('webviewclosed', function(e) {
   }
   
   try {
-    var plants = JSON.parse(decodeURIComponent(e.response));
-    console.log('Configuration saved: ' + JSON.stringify(plants));
+    var updatedPlants = JSON.parse(decodeURIComponent(e.response));
+    console.log('Configuration saved: ' + JSON.stringify(updatedPlants));
+    
+    // Retrieve the existing plants (which have the latest watch logs)
+    var existingPlants = JSON.parse(localStorage.getItem('plant_tracker_settings') || '[]');
+    
+    // Merge: for each updated plant, preserve history & logs from matching existing plant
+    var mergedPlants = updatedPlants.map(function(up, index) {
+      var match = null;
+      if (up.id) {
+        match = existingPlants.find(function(ep) {
+          return ep.id === up.id;
+        });
+      }
+      
+      // Fallback only if both up and existing plants lack IDs (legacy compatibility)
+      if (!match && !up.id && existingPlants[index] && !existingPlants[index].id) {
+        match = existingPlants[index];
+      }
+      
+      if (match) {
+        // Retain the latest history and logs from the existing storage
+        up.id = up.id || match.id;
+        up.lastWatered = match.lastWatered || up.lastWatered || null;
+        up.lastFertilized = match.lastFertilized || up.lastFertilized || null;
+        up.lastFertilizedAmount = match.lastFertilizedAmount !== undefined ? match.lastFertilizedAmount : (up.lastFertilizedAmount || 0);
+        up.lastRepotted = match.lastRepotted || up.lastRepotted || null;
+        up.lastPruned = match.lastPruned || up.lastPruned || null;
+        up.lastRotated = match.lastRotated || up.lastRotated || null;
+        up.lastCleaned = match.lastCleaned || up.lastCleaned || null;
+        up.lastTreated = match.lastTreated || up.lastTreated || null;
+        up.lastMoved = match.lastMoved || up.lastMoved || null;
+        up.history = match.history || up.history || [];
+      }
+      return up;
+    });
     
     // Save to localStorage
-    localStorage.setItem('plant_tracker_settings', JSON.stringify(plants));
+    localStorage.setItem('plant_tracker_settings', JSON.stringify(mergedPlants));
     
     // Send to watch
-    sendPlantListToWatch(plants);
+    sendPlantListToWatch(mergedPlants);
   } catch (err) {
     console.error('Error parsing configuration response: ' + err);
   }
