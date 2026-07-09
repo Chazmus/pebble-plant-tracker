@@ -198,23 +198,23 @@ static void action_draw_header_callback(GContext *ctx, const Layer *cell_layer, 
 
 static void action_draw_row_callback(GContext *ctx, const Layer *cell_layer, MenuIndex *cell_index, void *context) {
   if (cell_index->row == 0) {
-    menu_cell_basic_draw(ctx, cell_layer, "Log Water", "Record watering event", NULL);
-  } else if (cell_index->row == 1) {
-    menu_cell_basic_draw(ctx, cell_layer, "Log Fertiliser", "Record fertilizer event", NULL);
-  } else if (cell_index->row == 2) {
-    menu_cell_basic_draw(ctx, cell_layer, "Log Repotting", "Record repotting event", NULL);
-  } else if (cell_index->row == 3) {
-    menu_cell_basic_draw(ctx, cell_layer, "Log Pruning", "Record pruning event", NULL);
-  } else if (cell_index->row == 4) {
-    menu_cell_basic_draw(ctx, cell_layer, "Log Rotation", "Record pot rotation", NULL);
-  } else if (cell_index->row == 5) {
-    menu_cell_basic_draw(ctx, cell_layer, "Log Cleaning", "Record leaf cleaning", NULL);
-  } else if (cell_index->row == 6) {
-    menu_cell_basic_draw(ctx, cell_layer, "Log Treatment", "Record pest treatment", NULL);
-  } else if (cell_index->row == 7) {
-    menu_cell_basic_draw(ctx, cell_layer, "Log Relocation", "Record location change", NULL);
-  } else if (cell_index->row == 8) {
     menu_cell_basic_draw(ctx, cell_layer, "View History", "Show previous logs", NULL);
+  } else if (cell_index->row == 1) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Water", "Record watering event", NULL);
+  } else if (cell_index->row == 2) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Fertiliser", "Record fertilizer event", NULL);
+  } else if (cell_index->row == 3) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Repotting", "Record repotting event", NULL);
+  } else if (cell_index->row == 4) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Pruning", "Record pruning event", NULL);
+  } else if (cell_index->row == 5) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Rotation", "Record pot rotation", NULL);
+  } else if (cell_index->row == 6) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Cleaning", "Record leaf cleaning", NULL);
+  } else if (cell_index->row == 7) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Treatment", "Record pest treatment", NULL);
+  } else if (cell_index->row == 8) {
+    menu_cell_basic_draw(ctx, cell_layer, "Log Relocation", "Record location change", NULL);
   }
 }
 
@@ -225,17 +225,17 @@ static void action_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index,
   int row = cell_index->row;
   
   if (row == 0) {
-    log_action_success(index, 0); // 0 = Water
+    // Open history logs window
+    window_stack_push(s_history_window, true);
   } else if (row == 1) {
+    log_action_success(index, 0); // 0 = Water
+  } else if (row == 2) {
     // Open number window to choose amount
     int last_amt = s_plants[index].last_fertilized_amount;
     number_window_set_value(s_number_window, last_amt > 0 ? last_amt : 5);
     window_stack_push((Window *)s_number_window, true);
-  } else if (row >= 2 && row <= 7) {
-    log_action_success(index, row); // 2 = Repotted, 3 = Pruned, 4 = Rotated, 5 = Cleaned, 6 = Treated, 7 = Moved
-  } else if (row == 8) {
-    // Open history logs window
-    window_stack_push(s_history_window, true);
+  } else if (row >= 3 && row <= 8) {
+    log_action_success(index, row - 1); // 2 = Repotted, 3 = Pruned, 4 = Rotated, 5 = Cleaned, 6 = Treated, 7 = Moved
   }
 }
 
