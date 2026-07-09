@@ -84,19 +84,32 @@ Pebble.addEventListener('webviewclosed', function(e) {
   }
 });
 
+function getPayloadValue(payload, keyName) {
+  if (payload[keyName] !== undefined) {
+    return payload[keyName];
+  }
+  if (keys[keyName] !== undefined && payload[keys[keyName]] !== undefined) {
+    return payload[keys[keyName]];
+  }
+  return undefined;
+}
+
 Pebble.addEventListener('appmessage', function(e) {
   var payload = e.payload;
   console.log('Received AppMessage from watch: ' + JSON.stringify(payload));
   
-  if (payload[keys.AppKeySync] !== undefined) {
+  var syncVal = getPayloadValue(payload, 'AppKeySync');
+  var plantIdx = getPayloadValue(payload, 'AppKeyPlantIndex');
+  
+  if (syncVal !== undefined) {
     console.log('Sync requested by watch');
     var plants = JSON.parse(localStorage.getItem('plant_tracker_settings') || '[]');
     sendPlantListToWatch(plants);
-  } else if (payload[keys.AppKeyPlantIndex] !== undefined) {
-    var index = payload[keys.AppKeyPlantIndex];
-    var logType = payload[keys.AppKeyLogType];
-    var logAmount = payload[keys.AppKeyLogAmount] || 0;
-    var logTimeSec = payload[keys.AppKeyLogTime] || Math.floor(Date.now() / 1000);
+  } else if (plantIdx !== undefined) {
+    var index = plantIdx;
+    var logType = getPayloadValue(payload, 'AppKeyLogType');
+    var logAmount = getPayloadValue(payload, 'AppKeyLogAmount') || 0;
+    var logTimeSec = getPayloadValue(payload, 'AppKeyLogTime') || Math.floor(Date.now() / 1000);
     
     var logTimeMs = logTimeSec * 1000;
     var logDateStr = new Date(logTimeMs).toISOString();
