@@ -8,8 +8,10 @@ Pebble.addEventListener('ready', function(e) {
 Pebble.addEventListener('showConfiguration', function(e) {
   var storedPlants = JSON.parse(localStorage.getItem('plant_tracker_settings') || '[]');
   
-  // Inject state directly into HTML string
-  var html = configHtml.replace('let plants = [];', 'let plants = ' + JSON.stringify(storedPlants) + ';');
+  // Inject state directly into HTML string using a robust regex
+  var html = configHtml.replace(/let\s+plants\s*=\s*\[\s*\]\s*;?/, 'let plants = ' + JSON.stringify(storedPlants) + ';');
+  console.log('WebView Injection Status: ' + (html !== configHtml ? 'SUCCESS' : 'FAILED'));
+  
   var url = 'data:text/html;charset=utf-8,' + encodeURIComponent(html);
   
   console.log('Showing configuration page...');
