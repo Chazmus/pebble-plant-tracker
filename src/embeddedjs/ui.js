@@ -1,5 +1,5 @@
 import Poco from "commodetto/Poco";
-import { state, ACTION_OPTIONS, getRelativeTime } from "./state";
+import { state, ACTION_OPTIONS, getRelativeTime, getAgeString } from "./state";
 
 let fontTitle;
 let fontRegular;
@@ -9,9 +9,9 @@ let fontBold;
 let cBgColor, cCardBg, cText, cTextDim, cAccent, cSelected, cWhite, cBlack;
 
 export function initUI(render) {
-  fontTitle = new render.Font("Gothic-Bold", 18);
-  fontRegular = new render.Font("Gothic-Regular", 14);
-  fontBold = new render.Font("Gothic-Bold", 14);
+  fontTitle = new render.Font("Gothic-Bold", 20);
+  fontRegular = new render.Font("Gothic-Regular", 16);
+  fontBold = new render.Font("Gothic-Bold", 16);
   
   cBgColor = render.makeColor(15, 23, 42);
   cCardBg = render.makeColor(30, 41, 59);
@@ -73,14 +73,20 @@ export function draw(render) {
           render.fillRectangle(cAccent, 0, y, render.width, itemHeight);
         }
         
-        render.drawText(plant.name || "Unnamed Plant", fontBold, 
-                        isSelected ? cBgColor : cText, 8, y + 4);
+        let displayName = plant.name || "Unnamed Plant";
+        const ageStr = getAgeString(plant.plantedAt);
+        if (ageStr) {
+          displayName += " " + ageStr;
+        }
+
+        render.drawText(displayName, fontBold, 
+                        isSelected ? cBgColor : cText, 8, y + 2);
         
         const relWater = getRelativeTime(plant.lastWatered);
         const relFert = getRelativeTime(plant.lastFertilized);
         const statusText = `W: ${relWater} | F: ${relFert}`;
         
-        render.drawText(statusText, fontRegular, isSelected ? cBgColor : cTextDim, 8, y + 22);
+        render.drawText(statusText, fontRegular, isSelected ? cBgColor : cTextDim, 8, y + 20);
         render.drawLine(0, y + itemHeight - 1, render.width, y + itemHeight - 1, cCardBg, 1);
       }
       
@@ -126,7 +132,7 @@ export function draw(render) {
                       Math.floor((render.width - w) / 2), 
                       Math.floor((render.height - fontRegular.height) / 2) + 12);
     } else {
-      const itemHeight = 36;
+      const itemHeight = 40;
       const visibleRows = Math.floor((render.height - 25) / itemHeight);
       const reversedHistory = history.slice().reverse();
       
@@ -150,7 +156,7 @@ export function draw(render) {
         const timeText = getRelativeTime(ev.time);
         
         render.drawText(actionText, fontBold, cText, 8, y + 2);
-        render.drawText(timeText, fontRegular, cTextDim, 8, y + 18);
+        render.drawText(timeText, fontRegular, cTextDim, 8, y + 20);
         render.drawLine(0, y + itemHeight - 1, render.width, y + itemHeight - 1, cCardBg, 1);
       }
       

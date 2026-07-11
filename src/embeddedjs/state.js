@@ -61,6 +61,17 @@ export function getRelativeTime(timeStr) {
   return diffDay + "d";
 }
 
+export function getAgeString(plantedAt) {
+  if (!plantedAt) return "";
+  const plantedTime = new Date(plantedAt).getTime();
+  if (isNaN(plantedTime)) return "";
+  const diffMs = Date.now() - plantedTime;
+  const ageDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  if (ageDays < 0) return "";
+  const ageWeeks = Math.floor(ageDays / 7);
+  return `${ageDays}d (${ageWeeks}w)`;
+}
+
 export function showToast(message, duration, nextState, drawCallback) {
   if (state.toastTimer) {
     clearTimeout(state.toastTimer);
@@ -151,7 +162,7 @@ export function handleButton(type, callbacks) {
         draw();
       }
     } else if (type === "down") {
-      const visibleRows = Math.floor((callbacks.screenHeight - 25) / 36);
+      const visibleRows = Math.floor((callbacks.screenHeight - 25) / 40);
       if (state.historyScrollIdx < history.length - visibleRows) {
         state.historyScrollIdx++;
         draw();
