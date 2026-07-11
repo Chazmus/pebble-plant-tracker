@@ -1,8 +1,9 @@
 name: Build and Release Pebble App
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*'
   # Allows manual triggers from the Actions tab
   workflow_dispatch:
 
@@ -55,8 +56,9 @@ jobs:
           name: watchapp-pbw
           path: build/*.pbw
 
-      - name: Upload Release Asset
-        if: github.event_name == 'release'
+      - name: Create Release and Upload Asset
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           files: build/*.pbw
+          generate_release_notes: true
