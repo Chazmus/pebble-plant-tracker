@@ -1,7 +1,7 @@
 {
   "name": "pebble-plant-tracker",
   "author": "Chazmus inc.",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "keywords": ["pebble-app"],
   "private": true,
   "scripts": {
