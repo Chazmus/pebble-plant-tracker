@@ -50,15 +50,23 @@ jobs:
         run: |
           pebble build
 
+      - name: Rename build artifact to include version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          for f in build/*.pbw; do
+            filename=$(basename "$f" .pbw)
+            cp "$f" "build/${filename}-v${VERSION}.pbw"
+          done
+
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: watchapp-pbw
-          path: build/*.pbw
+          path: build/*-v*.pbw
 
       - name: Create Release and Upload Asset
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: build/*.pbw
+          files: build/*-v*.pbw
           generate_release_notes: true
