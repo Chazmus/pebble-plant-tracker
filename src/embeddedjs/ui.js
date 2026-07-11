@@ -9,9 +9,9 @@ let fontBold;
 let cBgColor, cCardBg, cText, cTextDim, cAccent, cSelected, cWhite, cBlack;
 
 export function initUI(render) {
-  fontTitle = new render.Font("Gothic-Bold", 20);
-  fontRegular = new render.Font("Gothic-Regular", 16);
-  fontBold = new render.Font("Gothic-Bold", 16);
+  fontTitle = new render.Font("Gothic-Bold", 24);
+  fontRegular = new render.Font("Gothic-Regular", 18);
+  fontBold = new render.Font("Gothic-Bold", 18);
   
   cBgColor = render.makeColor(15, 23, 42);
   cCardBg = render.makeColor(30, 41, 59);
@@ -53,20 +53,20 @@ export function draw(render) {
       const w1 = render.getTextWidth(msg1, fontBold);
       const w2 = render.getTextWidth(msg2, fontRegular);
       
-      const centerY = Math.floor((render.height - 25) / 2) + 12;
+      const centerY = Math.floor((render.height - 29) / 2) + 14;
       
       render.drawText(msg1, fontBold, cText, Math.floor((render.width - w1) / 2), centerY - 14);
       render.drawText(msg2, fontRegular, cTextDim, Math.floor((render.width - w2) / 2), centerY + 6);
     } else {
-      const itemHeight = 44;
-      const visibleRows = Math.floor((render.height - 25) / itemHeight);
+      const itemHeight = 48;
+      const visibleRows = Math.floor((render.height - 29) / itemHeight);
       
       for (let i = 0; i < visibleRows; i++) {
         const plantIdx = state.plantListScrollIdx + i;
         if (plantIdx >= state.plants.length) break;
         
         const plant = state.plants[plantIdx];
-        const y = 25 + i * itemHeight;
+        const y = 29 + i * itemHeight;
         
         const isSelected = (plantIdx === state.selectedPlantIdx);
         if (isSelected) {
@@ -97,15 +97,15 @@ export function draw(render) {
     const plant = state.plants[state.selectedPlantIdx];
     drawHeader(render, plant.name || "Plant Menu");
     
-    const itemHeight = 32;
-    const visibleRows = Math.floor((render.height - 25) / itemHeight);
+    const itemHeight = 36;
+    const visibleRows = Math.floor((render.height - 29) / itemHeight);
     
     for (let i = 0; i < visibleRows; i++) {
       const actionIdx = state.actionScrollIdx + i;
       if (actionIdx >= ACTION_OPTIONS.length) break;
       
       const option = ACTION_OPTIONS[actionIdx];
-      const y = 25 + i * itemHeight;
+      const y = 29 + i * itemHeight;
       
       const isSelected = (actionIdx === state.selectedActionIdx);
       if (isSelected) {
@@ -113,7 +113,7 @@ export function draw(render) {
       }
       
       const color = isSelected ? cBgColor : (actionIdx === 0 ? cTextDim : cText);
-      render.drawText(option, fontBold, color, 12, y + 8);
+      render.drawText(option, fontBold, color, 12, y + 10);
       render.drawLine(0, y + itemHeight - 1, render.width, y + itemHeight - 1, cCardBg, 1);
     }
     
@@ -132,8 +132,8 @@ export function draw(render) {
                       Math.floor((render.width - w) / 2), 
                       Math.floor((render.height - fontRegular.height) / 2) + 12);
     } else {
-      const itemHeight = 40;
-      const visibleRows = Math.floor((render.height - 25) / itemHeight);
+      const itemHeight = 44;
+      const visibleRows = Math.floor((render.height - 29) / itemHeight);
       const reversedHistory = history.slice().reverse();
       
       for (let i = 0; i < visibleRows; i++) {
@@ -141,7 +141,7 @@ export function draw(render) {
         if (evIdx >= reversedHistory.length) break;
         
         const ev = reversedHistory[evIdx];
-        const y = 25 + i * itemHeight;
+        const y = 29 + i * itemHeight;
         
         let actionText = "";
         if (ev.type === 0) actionText = "Watered";
@@ -156,7 +156,7 @@ export function draw(render) {
         const timeText = getRelativeTime(ev.time);
         
         render.drawText(actionText, fontBold, cText, 8, y + 2);
-        render.drawText(timeText, fontRegular, cTextDim, 8, y + 20);
+        render.drawText(timeText, fontRegular, cTextDim, 8, y + 22);
         render.drawLine(0, y + itemHeight - 1, render.width, y + itemHeight - 1, cCardBg, 1);
       }
       
@@ -168,15 +168,15 @@ export function draw(render) {
 }
 
 function drawHeader(render, title) {
-  render.fillRectangle(cBlack, 0, 0, render.width, 24);
+  render.fillRectangle(cBlack, 0, 0, render.width, 28);
   render.drawText(title, fontTitle, cAccent, 6, 2);
-  render.drawLine(0, 24, render.width, 24, cAccent, 1);
+  render.drawLine(0, 28, render.width, 28, cAccent, 1);
 }
 
 function drawScrollIndicators(render, scrollIdx, totalItems, visibleRows) {
   if (scrollIdx > 0) {
-    render.fillRectangle(cAccent, render.width - 10, 28, 6, 2);
-    render.fillRectangle(cAccent, render.width - 8, 26, 2, 2);
+    render.fillRectangle(cAccent, render.width - 10, 32, 6, 2);
+    render.fillRectangle(cAccent, render.width - 8, 30, 2, 2);
   }
   if (scrollIdx + visibleRows < totalItems) {
     render.fillRectangle(cAccent, render.width - 10, render.height - 6, 6, 2);

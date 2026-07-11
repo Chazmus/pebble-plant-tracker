@@ -11,6 +11,9 @@ Welcome! This repository hosts a Pebble watch application migrated from native C
   The compiler automatically runs the Moddable pre-compiler (`mcrun`) to compile JS files in `src/embeddedjs/` into binary resources (`mc.xsa`) and embeds them into the final `.pbw` package.
 * **Target Platforms**: `emery` (Pebble Time 2) and `gabbro` (Pebble 2/Core 2). Older platforms do not support the Moddable VM.
 
+> [!IMPORTANT]
+> **Manual Testing Requirement**: Never commit or push changes to the repository without first building and testing the deployment manually on the emulator or watch to verify that everything works and there are no runtime crashes.
+
 ---
 
 ## 🔍 Diagnostics & Debugging

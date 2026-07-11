@@ -116,7 +116,7 @@ export function handleButton(type, callbacks) {
     } else if (type === "down") {
       if (state.selectedPlantIdx < state.plants.length - 1) {
         state.selectedPlantIdx++;
-        const visibleRows = Math.floor((callbacks.screenHeight - 25) / 44);
+        const visibleRows = Math.floor((callbacks.screenHeight - 29) / 48);
         if (state.selectedPlantIdx >= state.plantListScrollIdx + visibleRows) {
           state.plantListScrollIdx = state.selectedPlantIdx - visibleRows + 1;
         }
@@ -142,7 +142,7 @@ export function handleButton(type, callbacks) {
     } else if (type === "down") {
       if (state.selectedActionIdx < ACTION_OPTIONS.length - 1) {
         state.selectedActionIdx++;
-        const visibleRows = Math.floor((callbacks.screenHeight - 25) / 32);
+        const visibleRows = Math.floor((callbacks.screenHeight - 29) / 36);
         if (state.selectedActionIdx >= state.actionScrollIdx + visibleRows) {
           state.actionScrollIdx = state.selectedActionIdx - visibleRows + 1;
         }
@@ -162,7 +162,7 @@ export function handleButton(type, callbacks) {
         draw();
       }
     } else if (type === "down") {
-      const visibleRows = Math.floor((callbacks.screenHeight - 25) / 40);
+      const visibleRows = Math.floor((callbacks.screenHeight - 29) / 44);
       if (state.historyScrollIdx < history.length - visibleRows) {
         state.historyScrollIdx++;
         draw();
