@@ -1,0 +1,62 @@
+name: Build and Release Pebble App
+
+on:
+  release:
+    types: [published]
+  # Allows manual triggers from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build watchapp (.pbw)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Generate settings configuration
+        run: npm run build-config
+
+      - name: Install Pebble Tool
+        run: |
+          uv tool install pebble-tool
+
+      - name: Install Pebble SDK 4.17
+        run: |
+          pebble sdk install 4.17
+          pebble sdk activate 4.17
+
+      - name: Build watchapp
+        run: |
+          pebble build
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: watchapp-pbw
+          path: build/*.pbw
+
+      - name: Upload Release Asset
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/*.pbw
